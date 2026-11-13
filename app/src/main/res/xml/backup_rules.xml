@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Which files are kept when the phone makes a cloud backup. -->
+<full-backup-content>
+    <include domain="database" path="." />
+</full-backup-content>
