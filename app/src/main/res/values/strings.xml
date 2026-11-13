@@ -47,6 +47,9 @@
     <string name="dashboard_greeting">Your portfolio</string>
     <string name="dashboard_subtitle">A summary of the properties you manage.</string>
     <string name="dashboard_empty">No properties have been added yet. Open the Properties section in the drawer to add your first one.</string>
+    <string name="total_properties">Total properties</string>
+    <string name="occupied_properties">Rented out</string>
+    <string name="vacant_properties">Empty</string>
 
     <!-- Items in the navigation drawer. -->
     <string name="menu_dashboard">Dashboard</string>
