@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The words used on the property screens. -->
+<resources>
+    <string name="add_property">Add property</string>
+    <string name="edit_property">Edit property</string>
+    <string name="property_name_hint">Name of the property</string>
+    <string name="property_address_hint">Address</string>
+    <string name="property_rent_hint">Rent per month</string>
+    <string name="property_type_hint">Type of property</string>
+    <string name="property_status_hint">Status</string>
+    <string name="no_properties_yet">No properties have been added yet.\nTap the button below to add the first one.</string>
+    <string name="delete_property">Delete property</string>
+    <string name="delete_property_message">%1$s and everything under it will be removed. Are you sure?</string>
+    <string name="property_deleted">Property deleted</string>
+    <string name="property_exists">A property with this name and address is already saved</string>
+    <string name="address_empty">Enter the address of the property</string>
+    <string name="rent_invalid">Enter a rent amount that is more than zero</string>
+</resources>
