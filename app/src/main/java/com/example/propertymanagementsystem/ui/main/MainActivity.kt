@@ -50,8 +50,11 @@ class MainActivity : AppCompatActivity() {
 
         // The screens that are in the drawer are the top level screens. The
         // toolbar shows a back arrow on any screen that is not one of them.
+        // The drawer layout is given to the AppBarConfiguration so the
+        // button that opens the drawer shows on the toolbar.
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.dashboardFragment, R.id.aboutFragment)
+            setOf(R.id.dashboardFragment, R.id.aboutFragment),
+            drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
 
