@@ -121,8 +121,15 @@ class PropertyFormFragment : Fragment() {
         val id = existing?.id ?: propertyId
 
         // The saving itself is done in a coroutine so the screen is not held
-        // up while the database writes the record.
+        // up while the database writes the record. The check for a property
+        // that has been saved before is done in the same coroutine because it
+        // has to ask the database.
         viewLifecycleOwner.lifecycleScope.launch {
+            if (viewModel.isDuplicate(name, address, id)) {
+                binding.nameLayout.error = getString(R.string.property_exists)
+                return@launch
+            }
+
             val property = Property(
                 id = id,
                 name = name,
