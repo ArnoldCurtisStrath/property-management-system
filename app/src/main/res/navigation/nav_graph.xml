@@ -50,8 +50,35 @@
             app:destination="@id/propertyFormFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/tenantListFragment"
+        android:name="com.example.propertymanagementsystem.ui.tenants.TenantListFragment"
+        android:label="@string/menu_tenants">
 
+        <action
+            android:id="@+id/action_tenant_list_to_tenant_form"
+            app:destination="@id/tenantFormFragment" />
 
+        <action
+            android:id="@+id/action_tenant_list_to_tenant_details"
+            app:destination="@id/tenantDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tenantFormFragment"
+        android:name="com.example.propertymanagementsystem.ui.tenants.TenantFormFragment"
+        android:label="@string/menu_tenants" />
+
+    <fragment
+        android:id="@+id/tenantDetailsFragment"
+        android:name="com.example.propertymanagementsystem.ui.tenants.TenantDetailsFragment"
+        android:label="@string/menu_tenants">
+
+        <action
+            android:id="@+id/action_tenant_details_to_tenant_form"
+            app:destination="@id/tenantFormFragment" />
+
+    </fragment>
 
 
 

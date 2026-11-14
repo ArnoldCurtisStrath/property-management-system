@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The words used on the tenant screens. -->
+<resources>
+    <string name="add_tenant">Add tenant</string>
+    <string name="edit_tenant">Edit tenant</string>
+    <string name="tenant_name_hint">Full name</string>
+    <string name="tenant_phone_hint">Phone number</string>
+    <string name="tenant_email_hint">Email address</string>
+    <string name="tenant_rent_hint">Rent per month</string>
+    <string name="tenant_start_date_hint">Start date</string>
+    <string name="tenant_property_hint">Property</string>
+    <string name="no_tenants_yet">No tenants have been added yet.\nTap the button below to add the first one.</string>
+    <string name="delete_tenant">Delete tenant</string>
+    <string name="delete_tenant_message">%1$s and the payments made by them will be removed. Are you sure?</string>
+    <string name="tenant_deleted">Tenant deleted</string>
+    <string name="phone_invalid">Enter a phone number with 10 digits</string>
+    <string name="phone_exists">This phone number is already used by another tenant</string>
+    <string name="date_invalid">Choose the day the tenant moved in</string>
+    <string name="search_tenants">Search by name</string>
+</resources>
