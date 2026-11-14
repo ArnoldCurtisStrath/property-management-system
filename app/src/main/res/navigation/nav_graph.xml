@@ -21,8 +21,34 @@
         android:name="com.example.propertymanagementsystem.ui.about.AboutFragment"
         android:label="@string/menu_about" />
 
+    <fragment
+        android:id="@+id/propertyListFragment"
+        android:name="com.example.propertymanagementsystem.ui.properties.PropertyListFragment"
+        android:label="@string/menu_properties">
 
+        <action
+            android:id="@+id/action_property_list_to_property_form"
+            app:destination="@id/propertyFormFragment" />
 
+        <action
+            android:id="@+id/action_property_list_to_property_details"
+            app:destination="@id/propertyDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/propertyFormFragment"
+        android:name="com.example.propertymanagementsystem.ui.properties.PropertyFormFragment"
+        android:label="@string/menu_properties" />
+
+    <fragment
+        android:id="@+id/propertyDetailsFragment"
+        android:name="com.example.propertymanagementsystem.ui.properties.PropertyDetailsFragment"
+        android:label="@string/menu_properties">
+
+        <action
+            android:id="@+id/action_property_details_to_property_form"
+            app:destination="@id/propertyFormFragment" />
+    </fragment>
 
 
 
