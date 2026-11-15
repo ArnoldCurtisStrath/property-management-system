@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The words used on the payment screens. -->
+<resources>
+    <string name="record_payment">Record payment</string>
+    <string name="payment_history">Payment history</string>
+    <string name="payment_tenant_hint">Tenant</string>
+    <string name="payment_amount_hint">Amount paid</string>
+    <string name="payment_date_hint">Date paid</string>
+    <string name="payment_method_hint">How it was paid</string>
+    <string name="collected_this_month">Collected</string>
+    <string name="expected_this_month">Expected</string>
+    <string name="outstanding">Outstanding</string>
+    <string name="no_payments_yet">No payments have been recorded yet.\nTap the button below to record the first one.</string>
+    <string name="delete_payment">Delete payment</string>
+    <string name="delete_payment_message">The payment of %1$.0f will be removed. Are you sure?</string>
+    <string name="payment_deleted">Payment deleted</string>
+    <string name="amount_invalid">Enter an amount that is more than zero</string>
+    <string name="tenant_missing">Add a tenant first</string>
+    <string name="unknown_tenant">Unknown tenant</string>
+    <string name="view_payments">View payments</string>
+    <string name="rent_collected">Rent collected this month</string>
+</resources>
