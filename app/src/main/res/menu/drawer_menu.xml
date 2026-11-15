@@ -12,6 +12,10 @@
             android:icon="@drawable/ic_property"
             android:title="@string/menu_properties" />
         <item
+            android:id="@+id/tenantListFragment"
+            android:icon="@drawable/ic_tenant"
+            android:title="@string/menu_tenants" />
+        <item
             android:id="@+id/aboutFragment"
             android:icon="@drawable/ic_about"
             android:title="@string/menu_about" />
