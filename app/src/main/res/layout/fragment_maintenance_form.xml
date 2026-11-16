@@ -80,6 +80,19 @@
             android:layout_height="48dp"
             android:layout_marginTop="4dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/request_status_hint"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <Spinner
+            android:id="@+id/statusSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/saveButton"

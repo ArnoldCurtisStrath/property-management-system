@@ -13,13 +13,13 @@ import com.example.propertymanagementsystem.data.model.MaintenanceRequest
 import com.example.propertymanagementsystem.data.model.Property
 import com.example.propertymanagementsystem.databinding.FragmentMaintenanceFormBinding
 import com.example.propertymanagementsystem.util.Dates
-import com.google.android.material.snackbar.Snackbar
 
 /**
- * The screen where a maintenance request is raised.
+ * The screen where a maintenance request is raised and where it is changed.
  *
- * The problem that has to be fixed is described, the category is picked and
- * the property where the problem is found is chosen from a drop down.
+ * When the screen is opened without an id a new request is raised. When it
+ * is opened with an id the request is loaded and the state of it can be
+ * moved on, for example from Open to In progress.
  */
 class MaintenanceFormFragment : Fragment() {
 
@@ -28,8 +28,24 @@ class MaintenanceFormFragment : Fragment() {
 
     private val viewModel: MaintenanceViewModel by viewModels()
 
+    // The id of the request being changed. Zero means a new request.
+    private var requestId: Long = 0
+
+    // The request that was loaded when the screen was opened.
+    private var existing: MaintenanceRequest? = null
+
     // The properties a request can be raised against.
     private var properties: List<Property> = emptyList()
+
+    // Used to pick the right property in the drop down when a request that
+    // is already saved is opened.
+    private var propertySpinnerReady = false
+    private var pendingPropertyId: Long = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requestId = arguments?.getLong("requestId", 0L) ?: 0L
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +66,8 @@ class MaintenanceFormFragment : Fragment() {
                 android.R.layout.simple_spinner_dropdown_item,
                 list.map { it.name }
             )
+            propertySpinnerReady = true
+            selectProperty()
         }
 
         // The kinds of problem that can be reported.
@@ -59,8 +77,44 @@ class MaintenanceFormFragment : Fragment() {
             MaintenanceRequest.allCategories
         )
 
+        // The states a request can be in.
+        binding.statusSpinner.adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            MaintenanceRequest.allStatuses
+        )
+
+        // When a request is opened again its details are put in the form.
+        if (requestId != 0L) {
+            binding.formTitle.setText(R.string.update_request)
+            viewModel.request(requestId).observe(viewLifecycleOwner) { request ->
+                if (request == null) return@observe
+                existing = request
+                binding.titleInput.setText(request.title)
+                binding.descriptionInput.setText(request.description)
+                binding.categorySpinner.setSelection(
+                    MaintenanceRequest.allCategories.indexOf(request.category)
+                )
+                binding.statusSpinner.setSelection(
+                    MaintenanceRequest.allStatuses.indexOf(request.status)
+                )
+                pendingPropertyId = request.propertyId
+                selectProperty()
+            }
+        }
+
         binding.saveButton.setOnClickListener { save() }
         binding.cancelButton.setOnClickListener { findNavController().popBackStack() }
+    }
+
+    // Puts the right property in the drop down.
+    private fun selectProperty() {
+        if (!propertySpinnerReady || pendingPropertyId == 0L) return
+        val index = properties.indexOfFirst { it.id == pendingPropertyId }
+        if (index >= 0) {
+            binding.propertySpinner.setSelection(index)
+        }
+        propertySpinnerReady = false
     }
 
     // Checks what was typed and saves the request.
@@ -82,24 +136,39 @@ class MaintenanceFormFragment : Fragment() {
 
         val property = properties.getOrNull(binding.propertySpinner.selectedItemPosition)
         if (property == null) {
-            Snackbar.make(
-                binding.root, R.string.property_missing, Snackbar.LENGTH_SHORT
+            com.google.android.material.snackbar.Snackbar.make(
+                binding.root, R.string.property_missing,
+                com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
             ).show()
             return
         }
 
         val category = binding.categorySpinner.selectedItem.toString()
+        val status = binding.statusSpinner.selectedItem.toString()
+
+        // The day it was closed is only kept when the request is done.
+        val resolvedAt = if (status == MaintenanceRequest.STATUS_DONE) {
+            existing?.resolvedAt ?: Dates.today()
+        } else {
+            null
+        }
 
         val request = MaintenanceRequest(
+            id = existing?.id ?: 0,
             propertyId = property.id,
             title = title,
             description = description,
             category = category,
-            status = MaintenanceRequest.STATUS_OPEN,
-            reportedAt = Dates.today()
+            status = status,
+            reportedAt = existing?.reportedAt ?: Dates.today(),
+            resolvedAt = resolvedAt
         )
 
-        viewModel.add(request)
+        if (existing == null) {
+            viewModel.add(request)
+        } else {
+            viewModel.update(request)
+        }
         findNavController().popBackStack()
     }
 
