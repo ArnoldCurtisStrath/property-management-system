@@ -39,6 +39,9 @@ class RentReminderWorker(
                 }
             }
 
+            // The reminder is shown when there is somebody who has not paid.
+            NotificationHelper.showRentReminder(applicationContext, unpaid.size)
+
             Result.success(workDataOf(KEY_UNPAID to unpaid.size))
         } catch (error: Exception) {
             // Something went wrong, for example the database was busy. The
