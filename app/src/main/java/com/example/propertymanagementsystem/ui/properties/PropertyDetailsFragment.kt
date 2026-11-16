@@ -63,6 +63,14 @@ class PropertyDetailsFragment : Fragment() {
         )
         binding.weatherContainer.addView(weatherBinding?.root)
 
+        // When the weather could not be loaded the button tries it again.
+        weatherBinding?.retryButton?.setOnClickListener {
+            val address = property?.address
+            if (address != null) {
+                loadWeather(address)
+            }
+        }
+
         viewModel.property(propertyId).observe(viewLifecycleOwner) { loaded ->
             if (loaded == null) return@observe
             property = loaded
@@ -93,6 +101,8 @@ class PropertyDetailsFragment : Fragment() {
         val card = weatherBinding ?: return
         card.weatherProgress.visibility = View.VISIBLE
         card.weatherPlace.text = ""
+        card.weatherError.visibility = View.GONE
+        card.retryButton.visibility = View.GONE
 
         viewLifecycleOwner.lifecycleScope.launch {
             val weather = withContext(Dispatchers.IO) {
@@ -101,7 +111,11 @@ class PropertyDetailsFragment : Fragment() {
 
             card.weatherProgress.visibility = View.GONE
             if (weather == null) {
-                card.weatherPlace.text = getString(R.string.weather_failed)
+                // The network may be down or the address may not be known.
+                // The user is told and is given a button to try again.
+                card.weatherError.visibility = View.VISIBLE
+                card.weatherError.text = getString(R.string.weather_failed)
+                card.retryButton.visibility = View.VISIBLE
                 return@launch
             }
 

@@ -52,5 +52,23 @@
             android:layout_height="32dp"
             android:layout_marginTop="8dp"
             android:visibility="gone" />
+
+        <!-- Shown when the weather could not be fetched. -->
+        <TextView
+            android:id="@+id/weatherError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/status_overdue"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/retryButton"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/retry"
+            android:visibility="gone" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
