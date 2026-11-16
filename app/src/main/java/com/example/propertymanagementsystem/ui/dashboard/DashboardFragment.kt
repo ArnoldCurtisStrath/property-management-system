@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.propertymanagementsystem.R
 import com.example.propertymanagementsystem.databinding.FragmentDashboardBinding
 
 /**
@@ -47,6 +48,11 @@ class DashboardFragment : Fragment() {
         // How many are still empty and could be advertised.
         viewModel.vacantCount.observe(viewLifecycleOwner) { count ->
             binding.vacantCount.text = count.toString()
+        }
+
+        // The rent that has been collected in the current month.
+        viewModel.collectedThisMonth.observe(viewLifecycleOwner) { total ->
+            binding.collectedAmount.text = getString(R.string.rent_amount, total)
         }
     }
 
