@@ -70,6 +70,14 @@ class TenantDetailsFragment : Fragment() {
             )
         }
 
+        // The payments this tenant has made are shown on the payment screen.
+        binding.paymentsButton.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_tenant_details_to_payment_history,
+                Bundle().apply { putLong("tenantId", tenantId) }
+            )
+        }
+
         binding.deleteButton.setOnClickListener { askToDelete() }
     }
 

@@ -78,9 +78,25 @@
             android:id="@+id/action_tenant_details_to_tenant_form"
             app:destination="@id/tenantFormFragment" />
 
+        <action
+            android:id="@+id/action_tenant_details_to_payment_history"
+            app:destination="@id/paymentHistoryFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/paymentHistoryFragment"
+        android:name="com.example.propertymanagementsystem.ui.payments.PaymentHistoryFragment"
+        android:label="@string/payment_history">
 
+        <action
+            android:id="@+id/action_payment_history_to_payment_form"
+            app:destination="@id/paymentFormFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentFormFragment"
+        android:name="com.example.propertymanagementsystem.ui.payments.PaymentFormFragment"
+        android:label="@string/payment_history" />
 
 
 </navigation>

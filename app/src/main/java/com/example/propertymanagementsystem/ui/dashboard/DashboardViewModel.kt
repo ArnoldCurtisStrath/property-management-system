@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.example.propertymanagementsystem.data.local.AppDatabase
 import com.example.propertymanagementsystem.data.model.Property
+import com.example.propertymanagementsystem.util.Dates
 
 /**
  * Holds the numbers that are shown on the dashboard.
@@ -18,6 +19,9 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val propertyDao = AppDatabase.getInstance(application).propertyDao()
 
+    // The payments are needed for the amount of rent that has been collected.
+    private val paymentDao = AppDatabase.getInstance(application).paymentDao()
+
     // The number of properties the landlord has.
     val propertyCount: LiveData<Int> = propertyDao.getAll().map { it.size }
 
@@ -26,4 +30,8 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
 
     // How many are empty and could be advertised.
     val vacantCount: LiveData<Int> = propertyDao.countByStatus(Property.STATUS_VACANT)
+
+    // How much rent has been collected in the current month.
+    val collectedThisMonth: LiveData<Double> =
+        paymentDao.totalCollectedInMonth(Dates.currentMonth())
 }
