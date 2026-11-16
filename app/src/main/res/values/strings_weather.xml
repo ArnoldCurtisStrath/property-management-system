@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The words used for the weather. -->
+<resources>
+    <string name="weather_title">Weather at the property</string>
+    <string name="weather_loading">Loading the weather…</string>
+    <string name="weather_temperature">%1$.1f °C</string>
+    <string name="weather_failed">The weather could not be loaded</string>
+</resources>
