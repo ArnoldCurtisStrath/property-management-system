@@ -22,6 +22,9 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
     // The payments are needed for the amount of rent that has been collected.
     private val paymentDao = AppDatabase.getInstance(application).paymentDao()
 
+    // The requests are needed for the number of problems that are still open.
+    private val maintenanceDao = AppDatabase.getInstance(application).maintenanceDao()
+
     // The number of properties the landlord has.
     val propertyCount: LiveData<Int> = propertyDao.getAll().map { it.size }
 
@@ -34,4 +37,7 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
     // How much rent has been collected in the current month.
     val collectedThisMonth: LiveData<Double> =
         paymentDao.totalCollectedInMonth(Dates.currentMonth())
+
+    // How many maintenance requests are still open.
+    val openRequestCount: LiveData<Int> = maintenanceDao.countOpen()
 }
