@@ -1,6 +1,8 @@
 package com.example.propertymanagementsystem.ui.main
 
+import android.Manifest
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -17,6 +19,7 @@ import com.example.propertymanagementsystem.R
 import com.example.propertymanagementsystem.databinding.ActivityMainBinding
 import com.example.propertymanagementsystem.ui.auth.LoginActivity
 import com.example.propertymanagementsystem.util.SessionManager
+import com.example.propertymanagementsystem.work.WorkScheduler
 import com.google.android.material.navigation.NavigationView
 
 /**
@@ -41,6 +44,18 @@ class MainActivity : AppCompatActivity() {
 
         session = SessionManager(this)
         drawerLayout = binding.drawerLayout
+
+        // The daily rent check is put in the background when the app opens.
+        WorkScheduler.start(this)
+
+        // From Android 13 the user has to allow notifications, otherwise the
+        // rent reminder cannot be shown.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermissions(
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                REQUEST_NOTIFICATIONS
+            )
+        }
 
         setSupportActionBar(binding.toolbar)
 
@@ -92,5 +107,11 @@ class MainActivity : AppCompatActivity() {
     // Handles the back arrow on the toolbar.
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    companion object {
+        // The number used when the permission to send notifications is asked
+        // for.
+        private const val REQUEST_NOTIFICATIONS = 100
     }
 }
