@@ -54,6 +54,11 @@ class DashboardFragment : Fragment() {
         viewModel.collectedThisMonth.observe(viewLifecycleOwner) { total ->
             binding.collectedAmount.text = getString(R.string.rent_amount, total)
         }
+
+        // The maintenance requests that still need to be sorted out.
+        viewModel.openRequestCount.observe(viewLifecycleOwner) { count ->
+            binding.openRequestCount.text = count.toString()
+        }
     }
 
     // The binding is cleared when the screen is gone, otherwise the view
