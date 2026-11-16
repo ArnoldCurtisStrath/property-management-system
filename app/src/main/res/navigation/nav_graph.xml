@@ -98,5 +98,18 @@
         android:name="com.example.propertymanagementsystem.ui.payments.PaymentFormFragment"
         android:label="@string/payment_history" />
 
+    <fragment
+        android:id="@+id/maintenanceListFragment"
+        android:name="com.example.propertymanagementsystem.ui.maintenance.MaintenanceListFragment"
+        android:label="@string/menu_maintenance">
 
+        <action
+            android:id="@+id/action_maintenance_list_to_maintenance_form"
+            app:destination="@id/maintenanceFormFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/maintenanceFormFragment"
+        android:name="com.example.propertymanagementsystem.ui.maintenance.MaintenanceFormFragment"
+        android:label="@string/menu_maintenance" />
 </navigation>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The words used on the maintenance screens. -->
+<resources>
+    <string name="raise_request">Raise a request</string>
+    <string name="update_request">Update request</string>
+    <string name="request_property_hint">Property</string>
+    <string name="request_title_hint">What is the problem</string>
+    <string name="request_description_hint">Describe the problem</string>
+    <string name="request_category_hint">Kind of problem</string>
+    <string name="request_status_hint">Status</string>
+    <string name="no_requests_yet">No requests have been raised yet.\nTap the button below to raise the first one.</string>
+    <string name="request_title_empty">Say what the problem is</string>
+    <string name="request_description_empty">Describe the problem so it can be fixed</string>
+    <string name="request_saved">Request saved</string>
+    <string name="request_deleted">Request deleted</string>
+    <string name="delete_request">Delete request</string>
+    <string name="delete_request_message">%1$s will be removed. Are you sure?</string>
+    <string name="open_requests">Open requests</string>
+</resources>
