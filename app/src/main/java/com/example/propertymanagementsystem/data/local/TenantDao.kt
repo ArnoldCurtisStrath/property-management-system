@@ -20,6 +20,11 @@ interface TenantDao {
     @Query("SELECT * FROM tenants WHERE active = 1 ORDER BY name")
     fun getActive(): LiveData<List<Tenant>>
 
+    // The background worker reads the tenants once and does not watch them,
+    // so it needs a query that does not return LiveData.
+    @Query("SELECT * FROM tenants WHERE active = 1")
+    suspend fun getActiveOnce(): List<Tenant>
+
     @Query("SELECT * FROM tenants WHERE id = :id")
     fun getById(id: Long): LiveData<Tenant?>
 

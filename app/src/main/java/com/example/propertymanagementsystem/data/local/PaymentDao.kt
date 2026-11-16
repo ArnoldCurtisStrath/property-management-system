@@ -49,6 +49,14 @@ interface PaymentDao {
     )
     fun countPaidByTenant(tenantId: Long, month: String): LiveData<Int>
 
+    // The same count but for the background worker, which reads the number
+    // once and does not watch it.
+    @Query(
+        "SELECT COUNT(*) FROM payments " +
+            "WHERE tenantId = :tenantId AND month = :month AND status = 'Paid'"
+    )
+    suspend fun countPaidOnce(tenantId: Long, month: String): Int
+
     @Insert
     suspend fun insert(payment: Payment): Long
 
