@@ -110,12 +110,12 @@ without it.
 
 | Name | Admission number | Part | Pull requests |
 |---|---|---|---|
-| Arnold Wangai Mbici | 166569 | Lead, the data layer and the documentation | [#1](https://github.com/ArnoldCurtisStrath/property-management-system/pull/1), [#2](https://github.com/ArnoldCurtisStrath/property-management-system/pull/2), [#10](https://github.com/ArnoldCurtisStrath/property-management-system/pull/10) |
-| Kabutha Joe Mwangi | 172896 | The properties | [#3](https://github.com/ArnoldCurtisStrath/property-management-system/pull/3) |
-| Kwendo Andrew Abel | 192106 | The tenants | [#4](https://github.com/ArnoldCurtisStrath/property-management-system/pull/4) |
-| Lusiola Erika Wambui | 177886 | The payments | [#5](https://github.com/ArnoldCurtisStrath/property-management-system/pull/5) |
-| Leon Onyancha Ouya | 189367 | The maintenance requests | [#7](https://github.com/ArnoldCurtisStrath/property-management-system/pull/7), [#8](https://github.com/ArnoldCurtisStrath/property-management-system/pull/8) |
-| Naaadir Abdulaziz Rana | 189548 | The API, the background work and the release | [#6](https://github.com/ArnoldCurtisStrath/property-management-system/pull/6), [#9](https://github.com/ArnoldCurtisStrath/property-management-system/pull/9), [#11](https://github.com/ArnoldCurtisStrath/property-management-system/pull/11) |
+| Arnold Wangai Mbici | 166569 | Lead, the data layer and the documentation | [#8](https://github.com/ArnoldCurtisStrath/property-management-system/pull/8), [#9](https://github.com/ArnoldCurtisStrath/property-management-system/pull/9), [#17](https://github.com/ArnoldCurtisStrath/property-management-system/pull/17) |
+| Kabutha Joe Mwangi | 172896 | The properties | [#10](https://github.com/ArnoldCurtisStrath/property-management-system/pull/10) |
+| Kwendo Andrew Abel | 192106 | The tenants | [#11](https://github.com/ArnoldCurtisStrath/property-management-system/pull/11) |
+| Lusiola Erika Wambui | 177886 | The payments | [#12](https://github.com/ArnoldCurtisStrath/property-management-system/pull/12) |
+| Leon Onyancha Ouya | 189367 | The maintenance requests | [#14](https://github.com/ArnoldCurtisStrath/property-management-system/pull/14), [#15](https://github.com/ArnoldCurtisStrath/property-management-system/pull/15) |
+| Naaadir Abdulaziz Rana | 189548 | The API, the background work and the release | [#13](https://github.com/ArnoldCurtisStrath/property-management-system/pull/13), [#16](https://github.com/ArnoldCurtisStrath/property-management-system/pull/16), [#18](https://github.com/ArnoldCurtisStrath/property-management-system/pull/18) |
 
 Every part was built on its own branch and was reviewed by another member
 before it was merged.
