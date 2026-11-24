@@ -122,7 +122,15 @@ class PropertyDetailsFragment : Fragment() {
             card.weatherPlace.text = weather.place
             card.weatherTemperature.text =
                 getString(R.string.weather_temperature, weather.temperature)
-            card.weatherDescription.text = weather.description
+            card.weatherDescription.text = if (weather.rainLikely) {
+                weather.description + " · plan visits around the rain"
+            } else {
+                weather.description
+            }
+            card.weatherForecast.text = weather.days.joinToString(" · ") { day ->
+                com.example.propertymanagementsystem.util.Dates.shortDate(day.date) + " " +
+                    day.maxTemperature.toInt() + "° · " + day.rainChance + "% rain"
+            }.ifBlank { "Forecast unavailable" }
         }
     }
 

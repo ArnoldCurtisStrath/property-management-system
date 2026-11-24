@@ -7,12 +7,17 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.propertymanagementsystem.R
+import com.example.propertymanagementsystem.SahihiApp
+import com.example.propertymanagementsystem.data.model.Expense
 import com.example.propertymanagementsystem.data.model.MaintenanceRequest
+import com.example.propertymanagementsystem.data.model.Payment
 import com.example.propertymanagementsystem.data.model.Property
 import com.example.propertymanagementsystem.databinding.FragmentMaintenanceFormBinding
 import com.example.propertymanagementsystem.util.Dates
+import kotlinx.coroutines.launch
 
 /**
  * The screen where a maintenance request is raised and where it is changed.
@@ -84,6 +89,12 @@ class MaintenanceFormFragment : Fragment() {
             MaintenanceRequest.allStatuses
         )
 
+        binding.prioritySpinner.adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            MaintenanceRequest.allPriorities
+        )
+
         // When a request is opened again its details are put in the form.
         if (requestId != 0L) {
             binding.formTitle.setText(R.string.update_request)
@@ -98,6 +109,13 @@ class MaintenanceFormFragment : Fragment() {
                 binding.statusSpinner.setSelection(
                     MaintenanceRequest.allStatuses.indexOf(request.status)
                 )
+                binding.prioritySpinner.setSelection(
+                    MaintenanceRequest.allPriorities.indexOf(request.priority).coerceAtLeast(0)
+                )
+                binding.costInput.setText(
+                    if (request.cost > 0) request.cost.toInt().toString() else ""
+                )
+                binding.vendorInput.setText(request.vendor.orEmpty())
                 pendingPropertyId = request.propertyId
                 selectProperty()
             }
@@ -144,7 +162,16 @@ class MaintenanceFormFragment : Fragment() {
         }
 
         val category = binding.categorySpinner.selectedItem.toString()
+        val priority = binding.prioritySpinner.selectedItem.toString()
         val status = binding.statusSpinner.selectedItem.toString()
+        val cost = binding.costInput.text.toString().trim().toDoubleOrNull() ?: 0.0
+        val vendor = binding.vendorInput.text.toString().trim()
+
+        if (cost < 0.0) {
+            binding.costLayout.error = "The cost cannot be negative"
+            return
+        }
+        binding.costLayout.error = null
 
         // The day it was closed is only kept when the request is done.
         val resolvedAt = if (status == MaintenanceRequest.STATUS_DONE) {
@@ -159,17 +186,47 @@ class MaintenanceFormFragment : Fragment() {
             title = title,
             description = description,
             category = category,
+            priority = priority,
             status = status,
             reportedAt = existing?.reportedAt ?: Dates.today(),
-            resolvedAt = resolvedAt
+            resolvedAt = resolvedAt,
+            cost = cost,
+            vendor = vendor.ifBlank { null }
         )
 
-        if (existing == null) {
-            viewModel.add(request)
-        } else {
-            viewModel.update(request)
+        val container = (requireActivity().application as SahihiApp).container
+        viewLifecycleOwner.lifecycleScope.launch {
+            val requestId = if (existing == null) {
+                container.maintenance.add(request)
+            } else {
+                container.maintenance.update(request)
+                existing?.id ?: 0L
+            }
+
+            // When a repair is completed with a cost, the cost becomes an
+            // expense on the building. The owner statement then includes it.
+            if (status == MaintenanceRequest.STATUS_DONE &&
+                cost > 0.0 &&
+                existing?.status != MaintenanceRequest.STATUS_DONE
+            ) {
+                val unit = container.database.propertyDao().getOnce(property.id)
+                container.ledger.addExpense(
+                    Expense(
+                        buildingId = unit?.buildingId ?: 0L,
+                        propertyId = property.id,
+                        category = Expense.CATEGORY_REPAIRS,
+                        amount = cost,
+                        date = resolvedAt ?: Dates.today(),
+                        vendor = vendor,
+                        method = Payment.METHOD_CASH,
+                        note = "Repair: $title",
+                        maintenanceId = requestId,
+                        recordedBy = container.settings.defaultCollector
+                    )
+                )
+            }
+            findNavController().popBackStack()
         }
-        findNavController().popBackStack()
     }
 
     override fun onDestroyView() {

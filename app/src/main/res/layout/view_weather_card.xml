@@ -1,73 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The card that shows the weather of a property. -->
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Sahihi.Card"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="0dp"
-    app:strokeColor="@color/divider"
-    app:strokeWidth="1dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/space_lg">
 
         <TextView
-            style="@style/CardTitle"
+            style="@style/TextAppearance.Sahihi.Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/weather_title" />
+            android:text="VISIT PLANNER"
+            android:textColor="@color/gold" />
 
         <TextView
             android:id="@+id/weatherPlace"
+            style="@style/TextAppearance.Sahihi.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="@dimen/space_xs"
+            android:text="Place" />
 
         <TextView
             android:id="@+id/weatherTemperature"
+            style="@style/TextAppearance.Sahihi.Money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/primary"
-            android:textSize="26sp"
-            android:textStyle="bold" />
+            android:text="0°C" />
 
         <TextView
             android:id="@+id/weatherDescription"
+            style="@style/TextAppearance.Sahihi.Body.Muted"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_secondary"
-            android:textSize="14sp" />
+            android:text="Weather" />
 
-        <!-- Shown while the weather is being fetched. -->
-        <ProgressBar
-            android:id="@+id/weatherProgress"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="8dp"
-            android:visibility="gone" />
-
-        <!-- Shown when the weather could not be fetched. -->
         <TextView
-            android:id="@+id/weatherError"
+            android:id="@+id/weatherForecast"
+            style="@style/TextAppearance.Sahihi.Body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:textColor="@color/status_overdue"
-            android:textSize="13sp"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="Forecast" />
+
+        <ProgressBar
+            android:id="@+id/weatherProgress"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="@dimen/space_sm"
+            android:indeterminateTint="@color/primary"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/weatherError"
+            style="@style/TextAppearance.Sahihi.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:textColor="@color/danger"
             android:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/retryButton"
-            style="@style/Widget.Material3.Button.TextButton"
+            style="@style/Widget.Sahihi.Button.Outlined"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
             android:text="@string/retry"
             android:visibility="gone" />
     </LinearLayout>

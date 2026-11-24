@@ -5,24 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.propertymanagementsystem.R
 import com.example.propertymanagementsystem.data.model.MaintenanceRequest
+import com.example.propertymanagementsystem.util.Money
 
-/**
- * A request together with the name of the property it belongs to. It is only
- * used for the list.
- */
 data class MaintenanceRow(
     val request: MaintenanceRequest,
     val propertyName: String
 )
 
-/**
- * Fills in the rows of the maintenance list.
- */
 class MaintenanceAdapter(
     private val onClick: (MaintenanceRow) -> Unit,
     private val onDelete: (MaintenanceRow) -> Unit
@@ -34,23 +29,51 @@ class MaintenanceAdapter(
         val property: TextView = view.findViewById(R.id.requestProperty)
         val category: TextView = view.findViewById(R.id.requestCategory)
         val status: TextView = view.findViewById(R.id.requestStatus)
+        val priority: TextView = view.findViewById(R.id.requestPriority)
+        val cost: TextView = view.findViewById(R.id.requestCost)
         val deleteButton: ImageButton = view.findViewById(R.id.deleteButton)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MaintenanceViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_maintenance, parent, false)
-        return MaintenanceViewHolder(view)
+        return MaintenanceViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_maintenance, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: MaintenanceViewHolder, position: Int) {
         val row = getItem(position)
+        val request = row.request
+        val context = holder.itemView.context
 
-        holder.title.text = row.request.title
-        holder.description.text = row.request.description
+        holder.title.text = request.title
+        holder.description.text = request.description
         holder.property.text = row.propertyName
-        holder.category.text = row.request.category
-        holder.status.text = row.request.status
+        holder.category.text = request.category
+        holder.priority.text = request.priority.uppercase()
+        holder.status.text = request.status.uppercase()
+
+        when (request.status) {
+            MaintenanceRequest.STATUS_DONE -> {
+                holder.status.setBackgroundResource(R.drawable.bg_chip_paid)
+                holder.status.setTextColor(ContextCompat.getColor(context, R.color.success))
+            }
+            MaintenanceRequest.STATUS_IN_PROGRESS -> {
+                holder.status.setBackgroundResource(R.drawable.bg_chip_current)
+                holder.status.setTextColor(ContextCompat.getColor(context, R.color.gold_dark))
+            }
+            else -> {
+                holder.status.setBackgroundResource(R.drawable.bg_chip_overdue)
+                holder.status.setTextColor(ContextCompat.getColor(context, R.color.danger))
+            }
+        }
+
+        if (request.cost > 0) {
+            holder.cost.visibility = View.VISIBLE
+            holder.cost.text = Money.format(request.cost)
+        } else {
+            holder.cost.visibility = View.GONE
+        }
 
         holder.itemView.setOnClickListener { onClick(row) }
         holder.deleteButton.setOnClickListener { onDelete(row) }
