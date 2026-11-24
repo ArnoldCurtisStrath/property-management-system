@@ -50,6 +50,20 @@ in [`PROBLEM_STATEMENT.md`](PROBLEM_STATEMENT.md).
 The design goal is simple: **15 seconds from the tenant's door to a receipt**,
 and **10 minutes to close the month**.
 
+## The look
+
+Sahihi is drawn as a working rent book, not a dashboard. Paper, ink and one
+rubber stamp: red is reserved for money that is still out, green only for money
+received. The month is a ruled statement, the ledger has columns and running
+balances, receipts are stamped **SAHIHI VERIFIED**, and every figure is set in
+a monospaced face so the columns line up. There are no gradient hero cards, no
+KPI tiles and no card stacks; the bottom bar carries the gesture inset so the
+paper runs edge to edge.
+
+The palette is deliberately narrow: `#F4F1E9` paper, `#171A17` ink and
+`#8A2E2A` stamp. DM Sans runs the interface, DM Mono carries the numbers, and
+DM Serif signs the name.
+
 ## The four copies of the truth
 
 The agent sits between four people who all need a different copy of the same
