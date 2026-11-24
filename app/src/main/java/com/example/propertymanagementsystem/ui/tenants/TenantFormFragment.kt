@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.propertymanagementsystem.R
+import com.example.propertymanagementsystem.SahihiApp
 import com.example.propertymanagementsystem.data.model.Property
 import com.example.propertymanagementsystem.data.model.Tenant
 import com.example.propertymanagementsystem.databinding.FragmentTenantFormBinding
@@ -85,11 +86,16 @@ class TenantFormFragment : Fragment() {
                     binding.emailInput.setText(tenant.email)
                     binding.rentInput.setText(tenant.rent.toInt().toString())
                     binding.startDateInput.setText(tenant.startDate)
+                    binding.dueDayInput.setText(tenant.dueDay.toString())
+                    binding.depositInput.setText(tenant.deposit.toInt().toString())
                     pendingPropertyId = tenant.propertyId
                     formFilled = true
                     selectProperty()
                 }
             }
+        } else {
+            binding.dueDayInput.setText("1")
+            binding.depositInput.setText("0")
         }
 
         // The day the tenant moved in is picked from a calendar.
@@ -163,6 +169,20 @@ class TenantFormFragment : Fragment() {
         }
         binding.startDateLayout.error = null
 
+        val dueDay = binding.dueDayInput.text.toString().trim().toIntOrNull() ?: 1
+        if (dueDay !in 1..28) {
+            binding.dueDayLayout.error = "The due day must be between 1 and 28"
+            return
+        }
+        binding.dueDayLayout.error = null
+
+        val deposit = binding.depositInput.text.toString().trim().toDoubleOrNull() ?: 0.0
+        if (deposit < 0.0) {
+            binding.depositLayout.error = "The deposit cannot be negative"
+            return
+        }
+        binding.depositLayout.error = null
+
         // The tenant has to live in one of the properties.
         val property = properties.getOrNull(binding.propertySpinner.selectedItemPosition)
         if (property == null) {
@@ -190,6 +210,10 @@ class TenantFormFragment : Fragment() {
                 propertyId = property.id,
                 rent = rent,
                 startDate = startDate,
+                endDate = existing?.endDate,
+                dueDay = dueDay,
+                deposit = deposit,
+                notes = existing?.notes,
                 active = existing?.active ?: true
             )
 
@@ -198,6 +222,8 @@ class TenantFormFragment : Fragment() {
             } else {
                 viewModel.update(tenant)
             }
+            val container = (requireActivity().application as SahihiApp).container
+            container.units.update(property.copy(status = Property.STATUS_OCCUPIED))
             findNavController().popBackStack()
         }
     }
