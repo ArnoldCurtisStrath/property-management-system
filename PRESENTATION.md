@@ -1,76 +1,251 @@
-# The presentation
+# Sahihi — 10 minute presentation
 
-The presentation is split into the five parts the brief asks for. The
-members are named so everybody knows who is speaking.
+**Group 8 · BBIT Year 3.2 A · Mobile Application Development · 2026**
 
-## Part 1 - The problem (Arnold)
+Every member speaks. The demo is live. The deck is only a backdrop.
 
-- Small landlords keep their records on paper and forget them.
-- Rent that was not paid is only noticed when the landlord asks for it.
-- Repairs are not linked to the house they belong to.
+## Before the room
 
-The full statement is in PROBLEM_STATEMENT.md.
+- Install the signed `Sahihi 2.0` APK on the emulator or phone.
+- Sign in once and leave the app on **Today**.
+- If the app was used for testing, clear the app data and load the sample
+  portfolio again, so Grace owes Ksh 4,000 and John owes Ksh 4,000.
+- Keep the APK, a screen recording and this script on the presentation
+  machine. The emulator is the primary; the APK is the backup.
+- Notification permission must be allowed. Test **More → Send today's brief
+  now** once before the room.
 
-## Part 2 - The solution (Arnold)
+## The running order
 
-The Property Management System app. Show the four parts:
+| Time | Speaker | What |
+|---|---|---|
+| 0:00–0:40 | Arnold | Hook: three records that do not agree |
+| 0:40–1:20 | Arnold | The agent, the owners and the four copies of the truth |
+| 1:20–2:00 | Kabutha | Today: the month's run and the collection |
+| 2:00–2:50 | Kwendo | Tenant ledger, part payment, receipt |
+| 2:50–3:40 | Erika | M-Pesa paste, balance, receipt |
+| 3:40–4:30 | Erika | Building statement: expenses, fee, net to owner |
+| 4:30–5:10 | Leon | Repairs, cost and the rain forecast |
+| 5:10–5:45 | Naaadir | Daily brief, API and WorkManager |
+| 5:45–6:45 | Arnold | Architecture, ledger, migration and sharing |
+| 6:45–8:15 | All | GitHub and what each person built |
+| 8:15–9:15 | Arnold | Impact, roadmap and close |
+| 9:15–10:00 | Buffer | Questions |
 
-- Properties and the tenants living in them
-- The rent that was collected and what is outstanding
-- The maintenance requests and where they have reached
-- The daily reminder and the weather at a property
+---
 
-## Part 3 - The architecture (Kabutha)
+## Part 1 — The hook (Arnold, 0:00–1:20)
+
+**Say:**
+
+> Meet an agent in Nairobi. He manages three buildings for three owners.
+> His office is a notebook, a WhatsApp inbox and a phone full of M-Pesa
+> messages. At the end of the month, three records disagree: his notebook,
+> the M-Pesa messages and the tenant's memory.
+>
+> The notebook is not the problem. The missing proof is.
+>
+> Most property apps digitise the landlord's notebook. They still assume one
+> full monthly payment and one person holding the truth. We built the
+> reconciliation layer instead.
+
+Point at the audience, not the screen. Pause after "the missing proof is".
+
+**The four copies:** tenant → receipt; caretaker → day close; owner →
+statement; agent → ledger. One ledger produces all four.
+
+## Part 2 — Today and the collection (Kabutha, 1:20–2:00)
+
+Open the app on **Today**.
+
+**Say:**
+
+> This is the month's run, not a property count. Ksh 73,000 collected of
+> Ksh 113,000 expected. Four tenants owe Ksh 45,500. One unit is vacant.
+> Three repairs are open.
+
+Point at the hero card, then the "Do next" cards. Tap **Collect rent**.
+
+> The caretaker can collect in seconds: pick the tenant, enter the amount,
+> choose cash or M-Pesa, and the receipt is issued.
+
+Select **Grace Wanjiku**, show the balance **Ksh 4,000**, and leave the amount
+for the next speaker. Do **not** record yet.
+
+## Part 3 — The tenant ledger and the receipt (Kwendo, 2:00–2:50)
+
+In the collect sheet, set **Ksh 2,500**, choose **Cash**, tap **Record & issue
+receipt**.
+
+**Say:**
+
+> Grace's balance was 4,000. She paid 2,500. The receipt number is
+> sequential, the balance after is printed, and the tenant keeps a copy.
+> This is the piece of paper that settles the argument.
+
+The receipt screen animates the **SAHIHI** stamp. Tap **Share receipt** and
+show the Android share sheet (WhatsApp is the first choice). Do not actually
+send it if time is short; the sheet is the proof.
+
+> Open the tenant ledger. Every charge and every payment is a line, with the
+> running balance. Part payments are normal. The oldest unpaid month drives
+> the ageing.
+
+Go back to Today.
+
+## Part 4 — M-Pesa reconciliation (Erika, 2:50–3:40)
+
+Go to **Money → M-Pesa**. Paste a confirmation message:
+
+> `QGH7X8Y9Z Confirmed. Ksh2,500.00 received from JOHN KAMAU 0745678901 on
+> 24/11/26 at 10:42 AM`
+
+Tap **Read message**.
+
+**Say:**
+
+> The app reads the amount, the phone, the date and the reference. It
+> normalises the phone and matches John Kamau in Kasarani A4. It shows the
+> balance before anything is saved. Nothing is written until the agent
+> confirms.
+
+Tap **Record M-Pesa & issue receipt**. The new receipt shows **Ksh 2,500**
+and the new balance **Ksh 1,500**.
+
+> We deliberately do not read SMS. Android restricts it, users should not
+> grant it, and the paste is enough. The parser is pure Kotlin and tested.
+
+## Part 5 — The owner statement (Erika, 3:40–4:30)
+
+Go to **Buildings → Kasarani Bedsitters**. Scroll to the net-to-owner card.
+
+**Say:**
+
+> This is the document that keeps the client. Collected Ksh 19,500. Expenses
+> Ksh 4,000: water 2,500 and security 1,500. The management fee is 10%, so
+> Ksh 1,950. Net to the owner: Ksh 13,550. Arrears and vacancy loss are shown
+> separately so nothing is hidden inside the net.
+
+Tap **Send owner statement**. Show the statement screen and the share
+button.
+
+## Part 6 — Repairs and the visit planner (Leon, 4:30–5:10)
+
+From the building screen tap **Open repairs**.
+
+**Say:**
+
+> Every repair has a priority, a status and a cost. A completed repair with a
+> cost becomes an expense, so it reaches the owner statement automatically.
+
+Open the roof leak. Show the **Urgent** priority and the cost field. Go back
+to the building and scroll to **Visit planner**.
+
+> The weather is not a decoration. Kasarani has 94% rain in the forecast and
+> two open roof repairs. The agent plans the visit before the rain, not after.
+
+## Part 7 — The daily brief (Naaadir, 5:10–5:45)
+
+Go to **More → Send today's brief now**.
+
+Pull down the notification shade.
+
+**Say:**
+
+> WorkManager builds the same ledger snapshot at 7am, even if the app is
+> closed. Ksh 79,500 of Ksh 113,000 collected, four tenants owe Ksh 45,500,
+> three repairs open. It survives the phone being switched off. That is why
+> it is WorkManager and not a timer.
+
+## Part 8 — Architecture and the technical story (Arnold, 5:45–6:45)
+
+**Say:**
+
+> The screen only shows. The ViewModel holds the state. The repository is the
+> only place that knows whether the data came from Room or the API. Room keeps
+> the ledger on the phone.
+
+Draw the flow on the slide or point:
 
 ```
-User -> Fragment -> ViewModel -> Repository -> Room database
-                                         -> Open-Meteo API
+Fragment → ViewModel → Repository → Room
+                              ↘ Open-Meteo
 ```
 
-- The fragment shows the screen and nothing else.
-- The ViewModel holds the state so the screen survives being turned.
-- The repository is the only place that knows where the data is from.
-- Room keeps the records on the phone.
+Three technical decisions worth defending:
 
-## Part 4 - The demonstration (Erika and Leon)
+1. **The ledger is derived, not stored.** Rent charges come from the tenancy
+   dates and rent; payments are stored; the balance is calculated. There is no
+   second copy of the truth to disagree.
+2. **The database migrates.** Version 2 adds buildings, expenses and receipt
+   fields with `Migration(1, 2)`. A version 1 phone keeps its records.
+3. **The receipt is a real artefact.** Canvas draws it; FileProvider shares a
+   scoped URI; WhatsApp receives an image.
 
-1. Sign in and show the dashboard.
-2. Add a property (Kabutha).
-3. Add a tenant in that property (Kwendo).
-4. Record a rent payment and show what is outstanding (Erika).
-5. Raise a maintenance request and move it to Done (Leon).
-6. Open a property and show the weather from the API (Naaadir).
-7. Show the rent reminder notification (Naaadir).
+## Part 9 — GitHub and the team (everyone, 6:45–8:15)
 
-## Part 5 - The technical defence (everyone)
+Open the GitHub repository:
 
-Each member must be ready to explain their own part:
+`https://github.com/ArnoldCurtisStrath/property-management-system`
 
-| Member | Has to be able to explain |
-|---|---|
-| Arnold | The Room database, the DAOs, the repositories, the README and the problem statement |
-| Kabutha | The property list, the RecyclerView and the adapter, the validation on the property form, the duplicate check |
-| Kwendo | The tenant list, the link between a tenant and a property, the validation of the phone number and the email, the search |
-| Erika | Recording a payment, the totals for the month, how the outstanding amount is worked out |
-| Leon | The maintenance list, the states of a request, the delete confirmation, the empty and error states |
-| Naaadir | The API call, the JSON that comes back, the error handling and the retry, the worker, why WorkManager is used |
+Show:
 
-Questions that are likely to be asked:
+- the contributors graph (six members)
+- the pull requests and reviews
+- the v2 commits for Sahihi
 
-- Why this architecture? It keeps the screen apart from the data, so the
-  screen can be changed without touching the database.
-- Why Room? It is a real SQLite database with the queries written as
-  Kotlin functions, and the data is still there after the app is closed.
-- How does the CRUD work? Insert, query, update and delete are in the DAOs
-  and the repository calls them.
-- What happens with wrong input? The check in Validation returns false and
-  the form shows a message under the field.
-- How does the data move? Fragment to ViewModel, ViewModel to repository,
-  repository to the DAO, DAO to the database.
-- What if the API is down? The API returns null, the card shows a message and
-  there is a button to try again.
-- Why WorkManager? The check has to run when the app is not open and it
-  should survive the phone being switched off. WorkManager keeps the work
-  and does it later.
-- What would you improve? Sync between phones, photos of the properties and
-  a monthly report.
+Each member says one line:
+
+- **Arnold:** the ledger engine, the Room migration, the architecture and the
+  documentation.
+- **Kabutha:** the design system, Today and the building screens.
+- **Kwendo:** the tenant ledger, the receipt screen and the tenant form.
+- **Erika:** the collect sheet, the M-Pesa parser, Money and the owner
+  statement.
+- **Leon:** the repairs, the weather card and the form/empty/error states.
+- **Naaadir:** the forecast, the daily brief and the signed release.
+
+## Part 10 — Close (Arnold, 8:15–9:15)
+
+**Say:**
+
+> Sahihi does not just record rent. It settles it.
+>
+> The tenant has a receipt. The caretaker has a clean day close. The owner has
+> a statement. The agent has a business they can prove.
+>
+> Every shilling, accounted for.
+>
+> The next step is sync, so a caretaker's phone and an owner's phone can see
+> the same ledger. The core is already here.
+
+## If something goes wrong
+
+- **Emulator is slow:** keep talking through the screen you have; the numbers
+  are already on it. Do not wait in silence.
+- **M-Pesa paste fails:** type the message again from the script, or use the
+  already-recorded receipt in Money.
+- **Share sheet does not open:** say "the receipt is generated locally; the
+  share sheet is the last step" and move on.
+- **Notification does not appear:** open More and tap the button again; the
+  worker is one-time and immediate. If it still fails, show the notification
+  from the earlier test in the screen recording.
+- **A screen is missing:** use the bottom bar or the back arrow; do not open
+  Settings mid-demo.
+
+## Ten-second answers
+
+- **Why this architecture?** The screen can change without touching the
+  database, and the ledger can be tested without Android.
+- **Why Room?** Real SQLite, offline, observable, and the records survive the
+  app closing.
+- **How does CRUD work?** Insert, query, update and delete are DAO functions;
+  the repository calls them; the ViewModel observes them.
+- **What about bad input?** `Validation` returns false; the field shows the
+  message; nothing is saved.
+- **What if the API is down?** The weather card shows a message and a retry;
+  the ledger keeps working.
+- **Why WorkManager?** The brief must run when the app is closed and after a
+  reboot.
+- **What would you improve?** Sync, photo evidence, lease reminders, recurring
+  expenses, a tenant portal.
