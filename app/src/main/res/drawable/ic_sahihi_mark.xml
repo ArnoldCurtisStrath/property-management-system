@@ -17,7 +17,7 @@
 
     <!-- The stamp. -->
     <path
-        android:fillColor="@color/gold"
+        android:fillColor="@color/stamp"
         android:pathData="M54,52 m-15,0 a15,15 0,1 1,30 0 a15,15 0,1 1,-30 0" />
     <path
         android:fillColor="@android:color/transparent"
