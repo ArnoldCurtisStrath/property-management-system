@@ -12,21 +12,19 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.example.propertymanagementsystem.R
+import com.example.propertymanagementsystem.data.ledger.TodayState
 import com.example.propertymanagementsystem.ui.main.MainActivity
+import com.example.propertymanagementsystem.util.Money
 
 /**
- * Shows the notification that reminds about the rent.
- *
- * On Android 8 and above a notification has to belong to a channel, so the
- * channel is made first. The channel is what the user sets the sound and the
- * vibration of the notification under.
+ * The daily brief notification: the month's run, the arrears and the repairs,
+ * in one glance before the agent leaves the house.
  */
 object NotificationHelper {
 
-    private const val CHANNEL_ID = "rent_reminders"
+    private const val CHANNEL_ID = "sahihi_brief"
     private const val NOTIFICATION_ID = 1001
 
-    // Makes the channel the notifications belong to.
     fun createChannel(context: Context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
 
@@ -41,13 +39,9 @@ object NotificationHelper {
         manager.createNotificationChannel(channel)
     }
 
-    // Shows the reminder. The number of tenants that have not paid is put in
-    // the message.
-    fun showRentReminder(context: Context, unpaid: Int) {
-        if (unpaid <= 0) return
+    fun showDailyBrief(context: Context, today: TodayState) {
+        if (!today.hasData) return
 
-        // From Android 13 the user has to allow notifications, so the
-        // permission is checked before the notification is shown.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val allowed = ContextCompat.checkSelfPermission(
                 context,
@@ -58,8 +52,9 @@ object NotificationHelper {
 
         createChannel(context)
 
-        // Tapping the notification opens the app.
-        val intent = Intent(context, MainActivity::class.java)
+        val intent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        }
         val pendingIntent = PendingIntent.getActivity(
             context,
             0,
@@ -67,10 +62,28 @@ object NotificationHelper {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
+        val body = buildString {
+            append(Money.format(today.collected))
+            append(" of ")
+            append(Money.format(today.expected))
+            append(" collected. ")
+            append(today.arrearsCount)
+            append(" tenant")
+            if (today.arrearsCount != 1) append("s")
+            append(" owe ")
+            append(Money.format(today.arrearsAmount))
+            append(". ")
+            append(today.openRepairs)
+            append(" repair")
+            if (today.openRepairs != 1) append("s")
+            append(" open.")
+        }
+
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle(context.getString(R.string.notification_title))
-            .setContentText(context.getString(R.string.notification_text, unpaid))
+            .setContentTitle("Sahihi · today's brief")
+            .setContentText(body)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .build()
