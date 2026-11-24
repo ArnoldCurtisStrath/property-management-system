@@ -60,11 +60,12 @@ Open the app on **Today**.
 
 **Say:**
 
-> This is the month's run, not a property count. Ksh 73,000 collected of
-> Ksh 113,000 expected. Four tenants owe Ksh 45,500. One unit is vacant.
-> Three repairs are open.
+> This is the month written as a statement: Ksh 73,000 collected of
+> Ksh 113,000 expected, and Ksh 52,000 still out across five tenants. The
+> **Needs you** list puts the tenants, the open repairs and the vacancy in
+> one place. The receipts below are today's proof.
 
-Point at the hero card, then the "Do next" cards. Tap **Collect rent**.
+Point at the statement, then the **Needs you** rows. Tap **Collect rent**.
 
 > The caretaker can collect in seconds: pick the tenant, enter the amount,
 > choose cash or M-Pesa, and the receipt is issued.
@@ -117,7 +118,7 @@ and the new balance **Ksh 1,500**.
 
 ## Part 5 — The owner statement (Erika, 3:40–4:30)
 
-Go to **Buildings → Kasarani Bedsitters**. Scroll to the net-to-owner card.
+Go to **Buildings → Kasarani Bedsitters**. Scroll to the net-to-owner figure.
 
 **Say:**
 
@@ -131,7 +132,7 @@ button.
 
 ## Part 6 — Repairs and the visit planner (Leon, 4:30–5:10)
 
-From the building screen tap **Open repairs**.
+From the building screen tap **Repairs**.
 
 **Say:**
 

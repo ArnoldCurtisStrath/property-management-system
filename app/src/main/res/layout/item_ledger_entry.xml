@@ -10,21 +10,23 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/space_md"
-        android:paddingBottom="@dimen/space_md">
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp">
 
         <TextView
             android:id="@+id/entryDate"
             style="@style/TextAppearance.Sahihi.Money.Small"
-            android:layout_width="64dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_mono"
             android:text="24 Nov"
-            android:textColor="@color/muted" />
+            android:textColor="@color/muted"
+            android:textSize="11sp" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_sm"
+            android:layout_marginStart="4dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -33,7 +35,8 @@
                 style="@style/TextAppearance.Sahihi.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rent" />
+                android:text="Rent"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/entryMeta"
@@ -41,7 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="November 2026" />
+                android:text="November 2026"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -55,7 +59,8 @@
                 style="@style/TextAppearance.Sahihi.Money.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ksh 0" />
+                android:text="Ksh 0"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/entryBalance"
@@ -63,13 +68,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="BAL Ksh 0" />
+                android:fontFamily="@font/dm_mono"
+                android:letterSpacing="0.02"
+                android:text="BAL Ksh 0"
+                android:textSize="9sp" />
         </LinearLayout>
 
         <ImageButton
             android:id="@+id/deleteEntryButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="4dp"
+            android:alpha="0.7"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/delete"
             android:src="@drawable/ic_delete"

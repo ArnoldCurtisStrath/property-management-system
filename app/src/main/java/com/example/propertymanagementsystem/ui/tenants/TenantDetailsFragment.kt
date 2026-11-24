@@ -103,6 +103,16 @@ class TenantDetailsFragment : Fragment() {
             else -> "Ksh 0"
         }
         binding.balanceValue.text = displayBalance
+        binding.balanceValue.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                when {
+                    ledger.owes -> R.color.stamp
+                    ledger.isCredit -> R.color.paid
+                    else -> R.color.ink
+                }
+            )
+        )
         binding.agingLine.text = when {
             ledger.isCredit -> "Credit on the account"
             ledger.owes -> "Oldest unpaid: " +
@@ -114,21 +124,21 @@ class TenantDetailsFragment : Fragment() {
         binding.statusChip.text = ledger.statusLabel.uppercase()
         when {
             ledger.isCredit || ledger.isSettled -> {
-                binding.statusChip.setBackgroundResource(R.drawable.bg_chip_paid)
+                binding.statusChip.setBackgroundResource(0)
                 binding.statusChip.setTextColor(
-                    ContextCompat.getColor(requireContext(), R.color.success)
+                    ContextCompat.getColor(requireContext(), R.color.paid)
                 )
             }
             ledger.agingBucket == LedgerCalculator.AGING_CURRENT -> {
-                binding.statusChip.setBackgroundResource(R.drawable.bg_chip_current)
+                binding.statusChip.setBackgroundResource(0)
                 binding.statusChip.setTextColor(
-                    ContextCompat.getColor(requireContext(), R.color.gold_dark)
+                    ContextCompat.getColor(requireContext(), R.color.muted)
                 )
             }
             else -> {
-                binding.statusChip.setBackgroundResource(R.drawable.bg_chip_overdue)
+                binding.statusChip.setBackgroundResource(R.drawable.bg_stamp)
                 binding.statusChip.setTextColor(
-                    ContextCompat.getColor(requireContext(), R.color.danger)
+                    ContextCompat.getColor(requireContext(), R.color.stamp)
                 )
             }
         }

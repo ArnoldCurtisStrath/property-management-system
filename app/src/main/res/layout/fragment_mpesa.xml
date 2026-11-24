@@ -153,10 +153,12 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/cancelButton"
-            style="@style/Widget.Sahihi.Button.Outlined"
-            android:layout_width="match_parent"
+            style="@style/Widget.Sahihi.Button.Quiet"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
-            android:text="Cancel" />
+            android:layout_gravity="end"
+            android:layout_marginTop="4dp"
+            android:text="Cancel"
+            android:textColor="@color/muted" />
     </LinearLayout>
 </ScrollView>

@@ -15,8 +15,8 @@
             style="@style/TextAppearance.Sahihi.Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="VISIT PLANNER"
-            android:textColor="@color/gold" />
+            android:text="3-DAY FORECAST"
+            android:textColor="@color/muted" />
 
         <TextView
             android:id="@+id/weatherPlace"

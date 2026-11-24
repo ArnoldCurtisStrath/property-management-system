@@ -3,19 +3,22 @@
 
     <!-- Sahihi is a paper-and-ink app. It stays light on purpose. -->
     <style name="Theme.PropertyManagement" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimary">@color/ink</item>
         <item name="colorOnPrimary">@color/paper_surface</item>
-        <item name="colorPrimaryContainer">@color/forest_soft</item>
-        <item name="colorOnPrimaryContainer">@color/primary</item>
-        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorPrimaryContainer">@color/paper_deep</item>
+        <item name="colorOnPrimaryContainer">@color/ink</item>
+        <item name="colorSecondary">@color/stamp</item>
         <item name="colorOnSecondary">@color/paper_surface</item>
-        <item name="colorSecondaryContainer">@color/vermilion_soft</item>
-        <item name="colorOnSecondaryContainer">@color/secondary</item>
+        <item name="colorSecondaryContainer">@color/stamp_soft</item>
+        <item name="colorOnSecondaryContainer">@color/stamp</item>
+        <item name="colorTertiary">@color/paid</item>
+        <item name="colorOnTertiary">@color/paper_surface</item>
         <item name="colorSurface">@color/surface</item>
         <item name="colorOnSurface">@color/ink</item>
         <item name="colorSurfaceVariant">@color/paper</item>
         <item name="colorOnSurfaceVariant">@color/muted</item>
-        <item name="colorOutline">@color/line</item>
+        <item name="colorOutline">@color/rule_strong</item>
+        <item name="colorOutlineVariant">@color/line</item>
         <item name="android:colorBackground">@color/background</item>
         <item name="android:fontFamily">@font/dm_sans</item>
         <item name="android:windowBackground">@color/paper</item>
@@ -23,6 +26,8 @@
         <item name="android:navigationBarColor" tools:targetApi="l">@color/paper</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
         <item name="materialButtonStyle">@style/Widget.Sahihi.Button</item>
         <item name="textInputStyle">@style/Widget.Sahihi.TextInputLayout</item>
         <item name="materialCardViewStyle">@style/Widget.Sahihi.Card</item>

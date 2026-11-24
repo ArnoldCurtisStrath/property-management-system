@@ -10,7 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/screen_padding">
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingTop="8dp"
+        android:paddingEnd="@dimen/screen_padding"
+        android:paddingBottom="@dimen/space_3xl">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,27 +21,12 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <TextView
+                style="@style/TextAppearance.Sahihi.Label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/TextAppearance.Sahihi.Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="BUILDING"
-                    android:textColor="@color/gold" />
-
-                <TextView
-                    android:id="@+id/buildingName"
-                    style="@style/TextAppearance.Sahihi.Headline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_xs"
-                    android:text="Building" />
-            </LinearLayout>
+                android:text="BUILDING" />
 
             <TextView
                 android:id="@+id/editButton"
@@ -47,237 +35,294 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="@dimen/space_sm"
+                android:paddingStart="10dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:text="EDIT"
-                android:textColor="@color/secondary" />
+                android:textColor="@color/ink" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/buildingName"
+            style="@style/TextAppearance.Sahihi.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Building"
+            android:textSize="27sp" />
 
         <TextView
             android:id="@+id/buildingOwner"
             style="@style/TextAppearance.Sahihi.Body.Muted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
-            android:text="Owner" />
+            android:layout_marginTop="3dp"
+            android:text="Owner"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/buildingMeta"
             style="@style/TextAppearance.Sahihi.Body.Muted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="Address · Type" />
+            android:layout_marginTop="1dp"
+            android:text="Address · Type"
+            android:textSize="13sp" />
 
-        <FrameLayout
+        <!-- The month's statement to the owner -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_lg"
-            android:background="@drawable/bg_hero"
-            android:padding="@dimen/space_xl">
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/rule_strong" />
+
+            <TextView
+                android:id="@+id/netLabel"
+                style="@style/TextAppearance.Sahihi.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="NET TO OWNER" />
+
+            <TextView
+                android:id="@+id/netAmount"
+                style="@style/TextAppearance.Sahihi.Money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Ksh 0"
+                android:textSize="31sp" />
+
+            <TextView
+                android:id="@+id/netDetail"
+                style="@style/TextAppearance.Sahihi.Body.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Collected · Expenses · Fee"
+                android:textSize="13sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/statementButton"
+                style="@style/Widget.Sahihi.Button.Outlined"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="12dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Send owner statement"
+                app:icon="@drawable/ic_share"
+                app:iconTint="@color/ink" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/rule_strong" />
+        </LinearLayout>
+
+        <!-- Position, as ruled lines -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/netLabel"
-                    style="@style/TextAppearance.Sahihi.Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NET TO OWNER · NOVEMBER 2026"
-                    android:textColor="@color/gold" />
-
-                <TextView
-                    android:id="@+id/netAmount"
-                    style="@style/TextAppearance.Sahihi.Money.Large"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_sm"
-                    android:text="Ksh 0"
-                    android:textColor="@color/paper_surface" />
-
-                <TextView
-                    android:id="@+id/netDetail"
                     style="@style/TextAppearance.Sahihi.Body"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Collected Ksh 0 · Expenses Ksh 0 · Fee Ksh 0"
-                    android:textColor="#C9D6D0" />
+                    android:layout_weight="1"
+                    android:text="Rent roll"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/statementButton"
-                    style="@style/Widget.Sahihi.Button"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/rentRollValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_lg"
-                    android:text="Send owner statement"
-                    android:textColor="@color/primary"
-                    app:backgroundTint="@color/paper_surface"
-                    app:icon="@drawable/ic_share"
-                    app:iconTint="@color/primary" />
+                    android:text="Ksh 0" />
             </LinearLayout>
-        </FrameLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.Sahihi.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_md">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/space_lg">
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/space_xs"
-                    android:paddingBottom="@dimen/space_xs">
+                    android:layout_weight="1"
+                    android:text="Collected"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
 
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Body.Muted"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Rent roll" />
-
-                    <TextView
-                        android:id="@+id/rentRollValue"
-                        style="@style/TextAppearance.Sahihi.Money.Small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ksh 0" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/collectedValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/space_xs"
-                    android:paddingBottom="@dimen/space_xs">
-
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Body.Muted"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Collected" />
-
-                    <TextView
-                        android:id="@+id/collectedValue"
-                        style="@style/TextAppearance.Sahihi.Money.Small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ksh 0" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/space_xs"
-                    android:paddingBottom="@dimen/space_xs">
-
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Body.Muted"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Arrears" />
-
-                    <TextView
-                        android:id="@+id/arrearsValue"
-                        style="@style/TextAppearance.Sahihi.Money.Small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ksh 0" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/space_xs"
-                    android:paddingBottom="@dimen/space_xs">
-
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Body.Muted"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Occupancy" />
-
-                    <TextView
-                        android:id="@+id/occupancyValue"
-                        style="@style/TextAppearance.Sahihi.Money.Small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0%" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/space_xs"
-                    android:paddingBottom="@dimen/space_xs">
-
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Body.Muted"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Vacancy loss" />
-
-                    <TextView
-                        android:id="@+id/vacancyLossValue"
-                        style="@style/TextAppearance.Sahihi.Money.Small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ksh 0" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/space_xs"
-                    android:paddingBottom="@dimen/space_xs">
-
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Body.Muted"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Open repairs" />
-
-                    <TextView
-                        android:id="@+id/openRepairsValue"
-                        style="@style/TextAppearance.Sahihi.Money.Small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0" />
-                </LinearLayout>
+                    android:text="Ksh 0" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Arrears"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/arrearsValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ksh 0"
+                    android:textColor="@color/stamp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Occupancy"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/occupancyValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0%" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Vacancy loss"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/vacancyLossValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ksh 0" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Open repairs"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/openRepairsValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/rule_strong" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_md"
+            android:layout_marginTop="14dp"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/addExpenseButton"
                 style="@style/Widget.Sahihi.Button.Outlined"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
                 android:layout_weight="1"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:text="Add expense"
                 app:icon="@drawable/ic_wallet"
                 app:iconTint="@color/ink" />
@@ -286,10 +331,12 @@
                 android:id="@+id/repairsButton"
                 style="@style/Widget.Sahihi.Button.Outlined"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
                 android:layout_marginStart="@dimen/space_sm"
                 android:layout_weight="1"
-                android:text="Open repairs"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Repairs"
                 app:icon="@drawable/ic_maintenance"
                 app:iconTint="@color/ink" />
         </LinearLayout>
@@ -298,8 +345,9 @@
             style="@style/TextAppearance.Sahihi.Headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2xl"
-            android:text="Visit planner" />
+            android:layout_marginTop="30dp"
+            android:text="Visit planner"
+            android:textSize="21sp" />
 
         <FrameLayout
             android:id="@+id/weatherContainer"
@@ -310,7 +358,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2xl"
+            android:layout_marginTop="30dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -319,7 +367,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Units" />
+                android:text="Units"
+                android:textSize="21sp" />
 
             <TextView
                 android:id="@+id/addUnitButton"
@@ -328,16 +377,23 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="@dimen/space_sm"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:text="ADD UNIT"
-                android:textColor="@color/secondary" />
+                android:textColor="@color/ink" />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/rule_strong" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/unitList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xs"
             android:nestedScrollingEnabled="false" />
 
         <TextView
@@ -352,7 +408,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2xl"
+            android:layout_marginTop="30dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -361,7 +417,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Expenses" />
+                android:text="Expenses"
+                android:textSize="21sp" />
 
             <TextView
                 android:id="@+id/expensesTotal"
@@ -371,11 +428,16 @@
                 android:text="Ksh 0" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/rule_strong" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/expenseList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xs"
             android:nestedScrollingEnabled="false" />
 
         <TextView

@@ -18,8 +18,8 @@ import com.example.propertymanagementsystem.util.Money
 /**
  * The Today screen: the agent's day book.
  *
- * It answers three questions before the agent leaves the house: what came
- * in, who still owes, and what needs a visit today.
+ * It opens on the month's position, then the few rows that need a decision,
+ * then the receipts posted today. No cards, no duplicated counts.
  */
 class DashboardFragment : Fragment() {
 
@@ -48,7 +48,8 @@ class DashboardFragment : Fragment() {
 
         binding.greeting.text = "Habari, ${viewModel.greetingName}"
         binding.dateLabel.text = viewModel.dateLabel
-        binding.avatar.text = viewModel.greetingName.firstOrNull()?.uppercase() ?: "S"
+        binding.monthLabel.text = viewModel.monthLabel
+        binding.daysLeft.text = viewModel.daysLeftLabel
 
         debtorAdapter = TodayDebtorAdapter { ledger ->
             findNavController().navigate(
@@ -68,16 +69,14 @@ class DashboardFragment : Fragment() {
         binding.receiptList.layoutManager = LinearLayoutManager(requireContext())
         binding.receiptList.adapter = receiptAdapter
 
-        binding.collectButton.setOnClickListener {
-            CollectSheet.newInstance().show(parentFragmentManager, "collect")
-        }
-        binding.arrearsCard.setOnClickListener { openTenants() }
+        binding.collectButton.setOnClickListener { openCollect() }
+        binding.collectStamp.setOnClickListener { openCollect() }
         binding.seeAllDebtors.setOnClickListener { openTenants() }
-        binding.vacantCard.setOnClickListener {
-            findNavController().navigate(R.id.buildingListFragment)
-        }
-        binding.repairsCard.setOnClickListener {
+        binding.repairsRow.setOnClickListener {
             findNavController().navigate(R.id.maintenanceListFragment)
+        }
+        binding.vacantRow.setOnClickListener {
+            findNavController().navigate(R.id.buildingListFragment)
         }
         binding.seeAllReceipts.setOnClickListener {
             findNavController().navigate(R.id.paymentHistoryFragment)
@@ -96,29 +95,44 @@ class DashboardFragment : Fragment() {
     }
 
     private fun render(today: TodayState) {
-        binding.heroCollected.text = Money.format(today.collected)
-        binding.heroExpected.text = "of ${Money.format(today.expected)} expected · ${today.collectedPercent}%"
-        binding.heroProgress.max = 100
-        binding.heroProgress.setProgressCompat(today.collectedPercent, true)
-        binding.heroCash.text = Money.format(today.cashCollected)
-        binding.heroMpesa.text = Money.format(today.mpesaCollected)
-        binding.heroReceipts.text = today.receiptCount.toString()
+        binding.outstandingValue.text = Money.format(today.outstanding)
+        binding.outstandingCaption.text = when {
+            today.arrearsCount == 0 -> "everyone is paid up"
+            today.arrearsCount == 1 -> "1 tenant · all months"
+            else -> "${today.arrearsCount} tenants · all months"
+        }
+        binding.statementProgress.max = 100
+        binding.statementProgress.setProgressCompat(today.collectedPercent, true)
+        binding.collectedCaption.text = "${Money.format(today.collected)} of " +
+            "${Money.format(today.expected)} collected · ${today.collectedPercent}%"
+        binding.collectedValue.text = Money.format(today.collected)
+        binding.expectedValue.text = Money.format(today.expected)
+        binding.receiptCountValue.text = today.receiptCount.toString()
 
-        binding.arrearsValue.text = when {
-            today.arrearsCount == 0 -> "Everyone is paid up"
-            else -> "${today.arrearsCount} tenant" + (if (today.arrearsCount == 1) "" else "s") +
-                " · " + Money.format(today.arrearsAmount)
-        }
-        binding.vacantValue.text = when {
-            today.vacantCount == 0 -> "No vacancy"
-            else -> "${today.vacantCount} unit" + (if (today.vacantCount == 1) "" else "s") +
-                " · " + Money.format(today.vacancyLoss) + " lost"
-        }
         binding.repairsValue.text = when {
             today.openRepairs == 0 -> "Nothing open"
             today.urgentRepairs > 0 -> "${today.openRepairs} open · ${today.urgentRepairs} urgent"
+            today.openRepairs == 1 -> "1 open"
             else -> "${today.openRepairs} open"
         }
+        binding.repairsStamp.text = when {
+            today.urgentRepairs > 0 -> "URGENT"
+            today.openRepairs > 0 -> "OPEN"
+            else -> "CLEAR"
+        }
+        binding.repairsStamp.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                if (today.openRepairs == 0) R.color.paid else R.color.stamp
+            )
+        )
+
+        binding.vacantValue.text = when (today.vacantCount) {
+            0 -> "No vacancy"
+            1 -> "1 unit empty"
+            else -> "${today.vacantCount} units empty"
+        }
+        binding.vacancyLossValue.text = Money.format(today.vacancyLoss)
 
         debtorAdapter.submitList(today.topDebtors)
         binding.emptyDebtors.visibility =
@@ -137,6 +151,10 @@ class DashboardFragment : Fragment() {
         }
         receiptAdapter.submitList(rows)
         binding.emptyReceipts.visibility = if (rows.isEmpty()) View.VISIBLE else View.GONE
+    }
+
+    private fun openCollect() {
+        CollectSheet.newInstance().show(parentFragmentManager, "collect")
     }
 
     private fun openTenants() {

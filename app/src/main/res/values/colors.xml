@@ -1,36 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Sahihi: paper and ink. -->
-    <color name="paper">#F7F1E3</color>
-    <color name="paper_surface">#FFFDF7</color>
-    <color name="ink">#1C1B18</color>
-    <color name="muted">#7C7568</color>
-    <color name="line">#E4DBCB</color>
-    <color name="primary">#0F3D2E</color>
-    <color name="primary_dark">#0A2C21</color>
-    <color name="secondary">#D4552D</color>
-    <color name="gold">#C9A227</color>
-    <color name="gold_dark">#7A5B00</color>
-    <color name="success">#2F6B4F</color>
-    <color name="danger">#B3261E</color>
-    <color name="forest_soft">#E7EEE9</color>
-    <color name="vermilion_soft">#F8E6DF</color>
-    <color name="gold_soft">#F4ECD2</color>
+    <!-- Sahihi: a rent book. Paper, ink and one rubber stamp. -->
+    <color name="paper">#F4F1E9</color>
+    <color name="paper_surface">#FAF8F2</color>
+    <color name="paper_deep">#ECE7DA</color>
+    <color name="ink">#171A17</color>
+    <color name="ink_soft">#3A3D37</color>
+    <color name="muted">#6E6A5F</color>
+    <color name="line">#D9D3C5</color>
+    <color name="rule_strong">#BDB6A6</color>
+
+    <!-- The stamp is reserved for money that is still out. -->
+    <color name="stamp">#8A2E2A</color>
+    <color name="stamp_soft">#F2E5E2</color>
+    <color name="paid">#2C5C46</color>
+    <color name="paid_soft">#E6EDE8</color>
+
+    <color name="primary">#171A17</color>
+    <color name="primary_dark">#0E100E</color>
+    <color name="secondary">#8A2E2A</color>
+    <color name="gold">#6E6A5F</color>
+    <color name="gold_dark">#8A2E2A</color>
+    <color name="success">#2C5C46</color>
+    <color name="danger">#8A2E2A</color>
+    <color name="forest_soft">#EDEAE0</color>
+    <color name="vermilion_soft">#F3E6E3</color>
+    <color name="gold_soft">#EFECE2</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
-    <!-- The old names are kept so every existing screen picks up the new look. -->
-    <color name="background">#F7F1E3</color>
-    <color name="surface">#FFFDF7</color>
-    <color name="text_primary">#1C1B18</color>
-    <color name="text_secondary">#7C7568</color>
-    <color name="divider">#E4DBCB</color>
+    <!-- The old names are kept so every existing screen picks up the new book. -->
+    <color name="background">#F4F1E9</color>
+    <color name="surface">#FAF8F2</color>
+    <color name="text_primary">#171A17</color>
+    <color name="text_secondary">#6E6A5F</color>
+    <color name="divider">#D9D3C5</color>
 
-    <color name="status_paid">#2F6B4F</color>
-    <color name="status_pending">#C9A227</color>
-    <color name="status_overdue">#B3261E</color>
-    <color name="status_open">#D4552D</color>
-    <color name="status_done">#2F6B4F</color>
+    <color name="status_paid">#2C5C46</color>
+    <color name="status_pending">#171A17</color>
+    <color name="status_overdue">#8A2E2A</color>
+    <color name="status_open">#8A2E2A</color>
+    <color name="status_done">#2C5C46</color>
 
-    <color name="ic_launcher_background">#0F3D2E</color>
+    <color name="ic_launcher_background">#171A17</color>
 </resources>

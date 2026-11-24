@@ -10,122 +10,150 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/screen_padding">
-
-        <TextView
-            style="@style/TextAppearance.Sahihi.Label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="YOUR PORTFOLIO"
-            android:textColor="@color/gold" />
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingTop="12dp"
+        android:paddingEnd="@dimen/screen_padding"
+        android:paddingBottom="@dimen/space_3xl">
 
         <TextView
             style="@style/TextAppearance.Sahihi.Headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xs"
-            android:text="Buildings" />
+            android:layout_marginTop="2dp"
+            android:text="Buildings"
+            android:textSize="27sp" />
 
         <TextView
             style="@style/TextAppearance.Sahihi.Body.Muted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="Every building, every owner, one book." />
+            android:text="Every building, every owner, one book."
+            android:textSize="14sp" />
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.Sahihi.Card"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_lg">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/rule_strong" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/space_lg">
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
-                <LinearLayout
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="Buildings"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
 
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="BUILDINGS" />
-
-                    <TextView
-                        android:id="@+id/totalBuildings"
-                        style="@style/TextAppearance.Sahihi.Money"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="0" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/totalBuildings"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="UNITS" />
-
-                    <TextView
-                        android:id="@+id/totalUnits"
-                        style="@style/TextAppearance.Sahihi.Money"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="0" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.4"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ARREARS" />
-
-                    <TextView
-                        android:id="@+id/totalArrears"
-                        style="@style/TextAppearance.Sahihi.Money"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="Ksh 0"
-                        android:textColor="@color/danger" />
-                </LinearLayout>
+                    android:text="0" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Units"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/totalUnits"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Arrears"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/totalArrears"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ksh 0"
+                    android:textColor="@color/stamp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/rule_strong" />
+        </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addBuildingButton"
             style="@style/Widget.Sahihi.Button.Outlined"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_md"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="14dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:text="Add building"
             app:icon="@drawable/ic_add"
             app:iconTint="@color/ink" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/rule_strong" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/buildingList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_lg"
             android:nestedScrollingEnabled="false" />
 
         <TextView

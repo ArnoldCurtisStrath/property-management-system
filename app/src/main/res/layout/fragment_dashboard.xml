@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingStart="@dimen/screen_padding"
-        android:paddingTop="@dimen/space_lg"
+        android:paddingTop="10dp"
         android:paddingEnd="@dimen/screen_padding"
         android:paddingBottom="@dimen/space_3xl">
 
-        <!-- Header -->
+        <!-- Masthead -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,369 +30,245 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/TextAppearance.Sahihi.Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/dm_serif_display"
+                    android:letterSpacing="0.16"
                     android:text="SAHIHI"
-                    android:textColor="@color/gold" />
-
-                <TextView
-                    android:id="@+id/greeting"
-                    style="@style/TextAppearance.Sahihi.Headline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_xs"
-                    android:text="Habari" />
+                    android:textColor="@color/ink"
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/dateLabel"
                     style="@style/TextAppearance.Sahihi.Body.Muted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Today" />
+                    android:layout_marginTop="1dp"
+                    android:text="Today"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/avatar"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:background="@drawable/bg_avatar"
-                android:gravity="center"
-                android:text="A"
-                android:textColor="@color/primary"
-                android:textSize="18sp"
+                android:id="@+id/collectStamp"
+                style="@style/TextAppearance.Sahihi.Stamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stamp"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingStart="14dp"
+                android:paddingTop="7dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="7dp"
+                android:rotation="-1.5"
+                android:text="COLLECT"
+                android:textSize="10sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- This month's run -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xl"
-            android:background="@drawable/bg_hero"
-            android:padding="@dimen/space_xl">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/TextAppearance.Sahihi.Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="THIS MONTH'S RUN"
-                    android:textColor="@color/gold" />
-
-                <TextView
-                    android:id="@+id/heroCollected"
-                    style="@style/TextAppearance.Sahihi.Money.Large"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_sm"
-                    android:text="Ksh 0"
-                    android:textColor="@color/paper_surface" />
-
-                <TextView
-                    android:id="@+id/heroExpected"
-                    style="@style/TextAppearance.Sahihi.Body"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="of Ksh 0 expected"
-                    android:textColor="#C9D6D0" />
-
-                <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/heroProgress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_lg"
-                    app:indicatorColor="@color/gold"
-                    app:trackColor="#33FFFDF7"
-                    app:trackCornerRadius="4dp"
-                    app:trackThickness="7dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_lg"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextAppearance.Sahihi.Label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="CASH"
-                            android:textColor="#AFC4BA" />
-
-                        <TextView
-                            android:id="@+id/heroCash"
-                            style="@style/TextAppearance.Sahihi.Money.Small"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Ksh 0"
-                            android:textColor="@color/paper_surface" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextAppearance.Sahihi.Label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="M-PESA"
-                            android:textColor="#AFC4BA" />
-
-                        <TextView
-                            android:id="@+id/heroMpesa"
-                            style="@style/TextAppearance.Sahihi.Money.Small"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Ksh 0"
-                            android:textColor="@color/paper_surface" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextAppearance.Sahihi.Label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="RECEIPTS"
-                            android:textColor="#AFC4BA" />
-
-                        <TextView
-                            android:id="@+id/heroReceipts"
-                            style="@style/TextAppearance.Sahihi.Money.Small"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="0"
-                            android:textColor="@color/paper_surface" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/collectButton"
-                    style="@style/Widget.Sahihi.Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_lg"
-                    android:text="Collect rent"
-                    android:textColor="@color/primary"
-                    app:backgroundTint="@color/paper_surface"
-                    app:cornerRadius="14dp"
-                    app:icon="@drawable/ic_receipt"
-                    app:iconTint="@color/primary" />
-            </LinearLayout>
-        </FrameLayout>
-
-        <!-- Do next -->
         <TextView
+            android:id="@+id/greeting"
             style="@style/TextAppearance.Sahihi.Headline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2xl"
-            android:text="Do next" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/arrearsCard"
-            style="@style/Widget.Sahihi.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_md"
-            android:clickable="true"
-            android:focusable="true">
+            android:layout_marginTop="18dp"
+            android:text="Habari"
+            android:textSize="26sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/space_lg">
-
-                <FrameLayout
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_avatar">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_receipt"
-                        app:tint="@color/primary" />
-                </FrameLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_md"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Who owes" />
-
-                    <TextView
-                        android:id="@+id/arrearsValue"
-                        style="@style/TextAppearance.Sahihi.Body.Muted"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="Everyone is paid up" />
-                </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_arrow_right"
-                    app:tint="@color/muted" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/vacantCard"
-            style="@style/Widget.Sahihi.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
-            android:clickable="true"
-            android:focusable="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/space_lg">
-
-                <FrameLayout
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_avatar">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_building"
-                        app:tint="@color/primary" />
-                </FrameLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_md"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Vacant units" />
-
-                    <TextView
-                        android:id="@+id/vacantValue"
-                        style="@style/TextAppearance.Sahihi.Body.Muted"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="No vacancy" />
-                </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_arrow_right"
-                    app:tint="@color/muted" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/repairsCard"
-            style="@style/Widget.Sahihi.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
-            android:clickable="true"
-            android:focusable="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/space_lg">
-
-                <FrameLayout
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_avatar">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_maintenance"
-                        app:tint="@color/primary" />
-                </FrameLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_md"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Open repairs" />
-
-                    <TextView
-                        android:id="@+id/repairsValue"
-                        style="@style/TextAppearance.Sahihi.Body.Muted"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="Nothing open" />
-                </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_arrow_right"
-                    app:tint="@color/muted" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Who owes -->
+        <!-- The month, written as a statement -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2xl"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/monthLabel"
+                    style="@style/TextAppearance.Sahihi.Label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="NOVEMBER 2026"
+                    android:textColor="@color/ink" />
+
+                <TextView
+                    android:id="@+id/daysLeft"
+                    style="@style/TextAppearance.Sahihi.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6 DAYS LEFT" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextAppearance.Sahihi.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="STILL OUT" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/outstandingValue"
+                    style="@style/TextAppearance.Sahihi.Money.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ksh 0"
+                    android:textColor="@color/stamp" />
+
+                <TextView
+                    android:id="@+id/outstandingCaption"
+                    style="@style/TextAppearance.Sahihi.Body.Muted"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:text="all months"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/statementProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                app:indicatorColor="@color/ink"
+                app:trackColor="@color/paper_deep"
+                app:trackCornerRadius="0dp"
+                app:trackStopIndicatorSize="0dp"
+                app:trackThickness="4dp" />
+
+            <TextView
+                android:id="@+id/collectedCaption"
+                style="@style/TextAppearance.Sahihi.Body.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Ksh 0 collected of Ksh 0 · 0%"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/rule_strong" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Collected"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/collectedValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ksh 0" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Expected"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/expectedValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ksh 0"
+                    android:textColor="@color/muted" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Receipts"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/receiptCountValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/rule_strong" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/collectButton"
+            style="@style/Widget.Sahihi.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Collect rent"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="textStart"
+            app:iconTint="@color/paper_surface" />
+
+        <!-- Needs you -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -401,7 +277,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Who owes" />
+                android:text="Needs you"
+                android:textSize="21sp" />
 
             <TextView
                 android:id="@+id/seeAllDebtors"
@@ -410,32 +287,162 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="@dimen/space_sm"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:text="SEE ALL"
-                android:textColor="@color/secondary" />
+                android:textColor="@color/ink" />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/debtorList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xs"
-            android:nestedScrollingEnabled="false" />
-
-        <TextView
-            android:id="@+id/emptyDebtors"
-            style="@style/TextAppearance.Sahihi.Body.Muted"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
-            android:text="Everyone is paid up. Good month."
-            android:visibility="gone" />
-
-        <!-- Recent receipts -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2xl"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/rule_strong" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/debtorList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+            <TextView
+                android:id="@+id/emptyDebtors"
+                style="@style/TextAppearance.Sahihi.Body.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="Everyone is paid up. Good month."
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/repairsRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.Sahihi.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Open repairs"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/repairsValue"
+                        style="@style/TextAppearance.Sahihi.Body.Muted"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="Nothing open"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/repairsStamp"
+                    style="@style/TextAppearance.Sahihi.Stamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_stamp"
+                    android:paddingStart="7dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="7dp"
+                    android:paddingBottom="2dp"
+                    android:rotation="-1.5"
+                    android:text="OPEN" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:id="@+id/vacantRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.Sahihi.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vacant units"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/vacantValue"
+                        style="@style/TextAppearance.Sahihi.Body.Muted"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="No vacancy"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/vacancyLossValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:text="Ksh 0"
+                    android:textColor="@color/stamp" />
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Stamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_stamp"
+                    android:paddingStart="7dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="7dp"
+                    android:paddingBottom="2dp"
+                    android:rotation="-1.5"
+                    android:text="VACANT" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/rule_strong" />
+        </LinearLayout>
+
+        <!-- Today's receipts -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -444,7 +451,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Recent receipts" />
+                android:text="Today"
+                android:textSize="21sp" />
 
             <TextView
                 android:id="@+id/seeAllReceipts"
@@ -453,16 +461,23 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="@dimen/space_sm"
-                android:text="VIEW LEDGER"
-                android:textColor="@color/secondary" />
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="ALL RECEIPTS"
+                android:textColor="@color/ink" />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/rule_strong" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/receiptList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xs"
             android:nestedScrollingEnabled="false" />
 
         <TextView
@@ -470,7 +485,7 @@
             style="@style/TextAppearance.Sahihi.Body.Muted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
+            android:paddingTop="14dp"
             android:text="No receipts yet. Your first collection will appear here."
             android:visibility="gone" />
 
@@ -479,7 +494,7 @@
             style="@style/TextAppearance.Sahihi.Label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2xl"
+            android:layout_marginTop="28dp"
             android:gravity="center"
             android:text="0 buildings · 0 units" />
     </LinearLayout>
