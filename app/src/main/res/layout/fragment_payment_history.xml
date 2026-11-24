@@ -10,21 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/screen_padding">
-
-        <TextView
-            style="@style/TextAppearance.Sahihi.Label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="THE LEDGER"
-            android:textColor="@color/gold" />
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingTop="12dp"
+        android:paddingEnd="@dimen/screen_padding"
+        android:paddingBottom="@dimen/space_3xl">
 
         <TextView
             style="@style/TextAppearance.Sahihi.Headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xs"
-            android:text="Money" />
+            android:layout_marginTop="2dp"
+            android:text="Money"
+            android:textSize="27sp" />
 
         <TextView
             android:id="@+id/monthLabel"
@@ -32,151 +29,167 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="November 2026 · cash in, cash out, what is left." />
+            android:text="November 2026 · cash in, cash out, what is left."
+            android:textSize="14sp" />
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.Sahihi.Card"
+        <!-- The cash book -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_lg">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/rule_strong" />
+
+            <TextView
+                style="@style/TextAppearance.Sahihi.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="NET THIS MONTH" />
+
+            <TextView
+                android:id="@+id/netValue"
+                style="@style/TextAppearance.Sahihi.Money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Ksh 0"
+                android:textSize="31sp" />
+
+            <TextView
+                android:id="@+id/netDetail"
+                style="@style/TextAppearance.Sahihi.Body.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Collected · expenses"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/rule_strong" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/space_lg">
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:text="Collected"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextAppearance.Sahihi.Label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="COLLECTED" />
-
-                        <TextView
-                            android:id="@+id/collectedValue"
-                            style="@style/TextAppearance.Sahihi.Money"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Ksh 0" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextAppearance.Sahihi.Label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="EXPENSES" />
-
-                        <TextView
-                            android:id="@+id/expensesValue"
-                            style="@style/TextAppearance.Sahihi.Money"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Ksh 0"
-                            android:textColor="@color/danger" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="@dimen/space_md"
-                    android:layout_marginBottom="@dimen/space_md"
-                    android:background="@color/line" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/collectedValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextAppearance.Sahihi.Label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="NET THIS MONTH" />
-
-                        <TextView
-                            android:id="@+id/netValue"
-                            style="@style/TextAppearance.Sahihi.Money"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Ksh 0"
-                            android:textColor="@color/success" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextAppearance.Sahihi.Label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ARREARS" />
-
-                        <TextView
-                            android:id="@+id/arrearsValue"
-                            style="@style/TextAppearance.Sahihi.Money"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Ksh 0"
-                            android:textColor="@color/danger" />
-                    </LinearLayout>
-                </LinearLayout>
+                    android:text="Ksh 0" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Expenses"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/expensesValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ksh 0" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Arrears"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/arrearsValue"
+                    style="@style/TextAppearance.Sahihi.Money.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ksh 0"
+                    android:textColor="@color/stamp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/rule_strong" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_md"
+            android:layout_marginTop="14dp"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/mpesaButton"
-                style="@style/Widget.Sahihi.Button.Outlined"
+                style="@style/Widget.Sahihi.Button"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
                 android:layout_weight="1"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:text="M-Pesa"
-                app:icon="@drawable/ic_receipt"
-                app:iconTint="@color/ink" />
+                app:icon="@drawable/ic_receipt" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/expenseButton"
                 style="@style/Widget.Sahihi.Button.Outlined"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
                 android:layout_marginStart="@dimen/space_sm"
                 android:layout_weight="1"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:text="Add expense"
                 app:icon="@drawable/ic_wallet"
                 app:iconTint="@color/ink" />
@@ -192,8 +205,10 @@
                 android:id="@+id/dayCloseButton"
                 style="@style/Widget.Sahihi.Button.Outlined"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
                 android:layout_weight="1"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:text="Day close"
                 app:icon="@drawable/ic_check"
                 app:iconTint="@color/ink" />
@@ -202,9 +217,11 @@
                 android:id="@+id/statementButton"
                 style="@style/Widget.Sahihi.Button.Outlined"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
                 android:layout_marginStart="@dimen/space_sm"
                 android:layout_weight="1"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:text="Statement"
                 app:icon="@drawable/ic_share"
                 app:iconTint="@color/ink" />
@@ -213,8 +230,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2xl"
-            android:gravity="center_vertical"
+            android:layout_marginTop="30dp"
+            android:gravity="bottom"
             android:orientation="horizontal">
 
             <TextView
@@ -222,7 +239,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Receipts" />
+                android:text="Receipts"
+                android:textSize="21sp" />
 
             <TextView
                 android:id="@+id/receiptsCount"
@@ -232,11 +250,16 @@
                 android:text="0 THIS MONTH" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/rule_strong" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/receiptList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xs"
             android:nestedScrollingEnabled="false" />
 
         <TextView
@@ -251,7 +274,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2xl"
+            android:layout_marginTop="30dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -260,7 +283,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Expenses" />
+                android:text="Expenses"
+                android:textSize="21sp" />
 
             <TextView
                 android:id="@+id/expensesTotal"
@@ -270,11 +294,16 @@
                 android:text="Ksh 0" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/rule_strong" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/expenseList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xs"
             android:nestedScrollingEnabled="false" />
 
         <TextView
@@ -289,7 +318,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2xl"
+            android:layout_marginTop="30dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -298,7 +327,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Arrears" />
+                android:text="Arrears"
+                android:textSize="21sp" />
 
             <TextView
                 android:id="@+id/seeAllArrears"
@@ -307,16 +337,23 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="@dimen/space_sm"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:text="SEE ALL"
-                android:textColor="@color/secondary" />
+                android:textColor="@color/ink" />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/rule_strong" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/arrearsList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xs"
             android:nestedScrollingEnabled="false" />
 
         <TextView

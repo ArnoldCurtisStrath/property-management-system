@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ksh 0"
-            android:textColor="@color/danger" />
+            android:textColor="@color/ink" />
     </LinearLayout>
 
     <View

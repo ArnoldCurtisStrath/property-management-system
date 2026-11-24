@@ -38,14 +38,16 @@
                     style="@style/TextAppearance.Sahihi.Headline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Collect rent" />
+                    android:text="Collect rent"
+                    android:textSize="24sp" />
 
                 <TextView
                     style="@style/TextAppearance.Sahihi.Body.Muted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="Fast, receipted, accounted for." />
+                    android:text="Fast, receipted, accounted for."
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <ImageButton
@@ -77,7 +79,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tenantList"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="244dp"
             android:layout_marginTop="@dimen/space_sm"
             android:clipToPadding="false"
             android:paddingBottom="@dimen/space_sm" />
@@ -88,7 +90,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_lg"
-            android:visibility="gone">
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/paper_deep"
+            app:strokeWidth="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -128,7 +132,7 @@
                     android:focusable="true"
                     android:padding="@dimen/space_sm"
                     android:text="CHANGE"
-                    android:textColor="@color/secondary" />
+                    android:textColor="@color/ink" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -167,8 +171,11 @@
                 android:id="@+id/amountInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_mono"
                 android:inputType="numberDecimal"
-                android:imeOptions="actionNext" />
+                android:imeOptions="actionNext"
+                android:textSize="28sp"
+                android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -182,7 +189,7 @@
             android:paddingTop="@dimen/space_xs"
             android:paddingBottom="@dimen/space_xs"
             android:text="USE FULL BALANCE"
-            android:textColor="@color/secondary" />
+            android:textColor="@color/ink" />
 
         <TextView
             style="@style/TextAppearance.Sahihi.Label"
@@ -206,7 +213,14 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="Cash" />
+                android:fontFamily="@font/dm_sans"
+                android:text="Cash"
+                android:textAllCaps="false"
+                android:textColor="@color/method_text"
+                app:backgroundTint="@color/method_bg"
+                app:cornerRadius="@dimen/radius_md"
+                app:strokeColor="@color/method_stroke"
+                app:strokeWidth="1dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/methodMpesa"
@@ -214,7 +228,14 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="M-Pesa" />
+                android:fontFamily="@font/dm_sans"
+                android:text="M-Pesa"
+                android:textAllCaps="false"
+                android:textColor="@color/method_text"
+                app:backgroundTint="@color/method_bg"
+                app:cornerRadius="@dimen/radius_md"
+                app:strokeColor="@color/method_stroke"
+                app:strokeWidth="1dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/methodBank"
@@ -222,7 +243,14 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="Bank" />
+                android:fontFamily="@font/dm_sans"
+                android:text="Bank"
+                android:textAllCaps="false"
+                android:textColor="@color/method_text"
+                app:backgroundTint="@color/method_bg"
+                app:cornerRadius="@dimen/radius_md"
+                app:strokeColor="@color/method_stroke"
+                app:strokeWidth="1dp" />
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <com.google.android.material.textfield.TextInputLayout

@@ -57,6 +57,7 @@ class CollectSheet : BottomSheetDialogFragment() {
         super.onStart()
         dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
             ?.let { sheet ->
+                sheet.setBackgroundResource(R.drawable.bg_bottom_sheet)
                 val behavior = BottomSheetBehavior.from(sheet)
                 behavior.state = BottomSheetBehavior.STATE_EXPANDED
                 behavior.skipCollapsed = true

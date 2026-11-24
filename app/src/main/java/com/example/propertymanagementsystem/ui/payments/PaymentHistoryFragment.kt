@@ -129,10 +129,12 @@ class PaymentHistoryFragment : Fragment() {
         binding.collectedValue.text = Money.format(today.collected)
         binding.expensesValue.text = Money.format(today.expensesThisMonth)
         binding.netValue.text = Money.format(today.netThisMonth)
+        binding.netDetail.text = "Collected ${Money.format(today.collected)} · " +
+            "Expenses ${Money.format(today.expensesThisMonth)}"
         binding.netValue.setTextColor(
             ContextCompat.getColor(
                 requireContext(),
-                if (today.netThisMonth < 0) R.color.danger else R.color.success
+                if (today.netThisMonth < 0) R.color.stamp else R.color.ink
             )
         )
         binding.arrearsValue.text = Money.format(today.arrearsAmount)
