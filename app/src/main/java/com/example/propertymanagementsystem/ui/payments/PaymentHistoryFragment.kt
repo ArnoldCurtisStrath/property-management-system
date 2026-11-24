@@ -4,44 +4,43 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.propertymanagementsystem.R
+import com.example.propertymanagementsystem.data.ledger.TodayState
+import com.example.propertymanagementsystem.data.model.Building
 import com.example.propertymanagementsystem.data.model.Payment
-import com.example.propertymanagementsystem.data.model.Tenant
 import com.example.propertymanagementsystem.databinding.FragmentPaymentHistoryBinding
+import com.example.propertymanagementsystem.ui.buildings.ExpenseRowAdapter
+import com.example.propertymanagementsystem.ui.dashboard.ReceiptMiniAdapter
+import com.example.propertymanagementsystem.ui.dashboard.ReceiptMiniRow
+import com.example.propertymanagementsystem.ui.dashboard.TodayDebtorAdapter
 import com.example.propertymanagementsystem.util.Dates
+import com.example.propertymanagementsystem.util.Money
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 
 /**
- * Shows the payments that have been recorded.
- *
- * When a tenant is passed to the screen only the payments of that tenant are
- * shown. When there is no tenant the payments of the whole portfolio are
- * shown instead. The numbers at the top are for the current month.
+ * The Money screen: cash in, cash out, receipts, expenses and arrears.
  */
 class PaymentHistoryFragment : Fragment() {
 
     private var _binding: FragmentPaymentHistoryBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: PaymentViewModel by viewModels()
-    private lateinit var adapter: PaymentAdapter
+    private val viewModel: MoneyViewModel by viewModels()
 
-    // The tenant the screen is about. Zero means the whole portfolio.
-    private var tenantId: Long = 0
+    private lateinit var receiptAdapter: ReceiptMiniAdapter
+    private lateinit var expenseAdapter: ExpenseRowAdapter
+    private lateinit var arrearsAdapter: TodayDebtorAdapter
 
-    private var tenants: List<Tenant> = emptyList()
     private var tenantNames: Map<Long, String> = emptyMap()
-    private var propertyNames: Map<Long, String> = emptyMap()
-    private var collected: Double = 0.0
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        tenantId = arguments?.getLong("tenantId", 0L) ?: 0L
-    }
+    private var payments: List<Payment> = emptyList()
+    private var buildings: List<Building> = emptyList()
+    private var lastToday: TodayState? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,76 +54,119 @@ class PaymentHistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = PaymentAdapter(onDelete = { row -> askToDelete(row.payment) })
+        binding.monthLabel.text = Dates.monthLabel(viewModel.month) +
+            " · cash in, cash out, what is left."
 
-        binding.paymentList.layoutManager =
-            androidx.recyclerview.widget.LinearLayoutManager(requireContext())
-        binding.paymentList.adapter = adapter
-
-        binding.monthLabel.text = Dates.monthLabel(Dates.currentMonth())
-
-        // The button at the bottom opens the screen where a payment is
-        // recorded.
-        binding.addPaymentButton.setOnClickListener {
-            findNavController().navigate(R.id.action_payment_history_to_payment_form)
-        }
-
-        viewModel.tenants.observe(viewLifecycleOwner) { list ->
-            tenants = list
-            tenantNames = list.associate { it.id to it.name }
-            // The rent that was expected this month is the rent of every
-            // tenant that is still active.
-            val expected = list.filter { it.active }.sumOf { it.rent }
-            binding.expectedAmount.text = getString(R.string.rent_amount, expected)
-            binding.outstandingAmount.text = getString(
-                R.string.rent_amount, (expected - collected).coerceAtLeast(0.0)
+        receiptAdapter = ReceiptMiniAdapter { payment ->
+            findNavController().navigate(
+                R.id.receiptFragment,
+                Bundle().apply { putLong("paymentId", payment.id) }
             )
         }
+        binding.receiptList.layoutManager = LinearLayoutManager(requireContext())
+        binding.receiptList.adapter = receiptAdapter
 
-        viewModel.properties.observe(viewLifecycleOwner) { list ->
-            propertyNames = list.associate { it.id to it.name }
-        }
+        expenseAdapter = ExpenseRowAdapter()
+        binding.expenseList.layoutManager = LinearLayoutManager(requireContext())
+        binding.expenseList.adapter = expenseAdapter
 
-        viewModel.totalCollected(Dates.currentMonth()).observe(viewLifecycleOwner) { total ->
-            collected = total
-            binding.collectedAmount.text = getString(R.string.rent_amount, total)
-            val expected = tenants.filter { it.active }.sumOf { it.rent }
-            binding.outstandingAmount.text = getString(
-                R.string.rent_amount, (expected - total).coerceAtLeast(0.0)
+        arrearsAdapter = TodayDebtorAdapter { ledger ->
+            findNavController().navigate(
+                R.id.tenantDetailsFragment,
+                Bundle().apply { putLong("tenantId", ledger.tenant.id) }
             )
         }
+        binding.arrearsList.layoutManager = LinearLayoutManager(requireContext())
+        binding.arrearsList.adapter = arrearsAdapter
 
-        // The list of payments is watched. It depends on whether the screen
-        // is showing one tenant or all of them.
-        if (tenantId != 0L) {
-            viewModel.forTenant(tenantId).observe(viewLifecycleOwner) { showPayments(it) }
-        } else {
-            viewModel.payments.observe(viewLifecycleOwner) { showPayments(it) }
+        binding.mpesaButton.setOnClickListener {
+            findNavController().navigate(R.id.mpesaFragment)
         }
+        binding.expenseButton.setOnClickListener {
+            findNavController().navigate(R.id.expenseFormFragment)
+        }
+        binding.dayCloseButton.setOnClickListener {
+            findNavController().navigate(R.id.dayCloseFragment)
+        }
+        binding.statementButton.setOnClickListener { chooseBuildingForStatement() }
+        binding.seeAllArrears.setOnClickListener {
+            findNavController().navigate(R.id.tenantListFragment)
+        }
+
+        viewModel.today.observe(viewLifecycleOwner) { today ->
+            lastToday = today
+            renderSummary(today)
+            arrearsAdapter.submitList(today.topDebtors)
+            binding.emptyArrears.visibility =
+                if (today.topDebtors.isEmpty()) View.VISIBLE else View.GONE
+            binding.receiptsCount.text = today.receiptCount.toString() + " THIS MONTH"
+        }
+
+        viewModel.tenants.observe(viewLifecycleOwner) { tenants ->
+            tenantNames = tenants.associate { it.id to it.name }
+            renderReceipts()
+        }
+
+        viewModel.payments.observe(viewLifecycleOwner) {
+            payments = it.sortedWith(
+                compareByDescending<Payment> { payment -> payment.date }
+                    .thenByDescending { payment -> payment.id }
+            ).take(12)
+            renderReceipts()
+        }
+
+        viewModel.expenses.observe(viewLifecycleOwner) { expenses ->
+            expenseAdapter.submitList(expenses)
+            binding.expensesTotal.text = Money.format(expenses.sumOf { it.amount })
+            binding.emptyExpenses.visibility =
+                if (expenses.isEmpty()) View.VISIBLE else View.GONE
+        }
+
+        viewModel.buildings.observe(viewLifecycleOwner) { buildings = it }
     }
 
-    // Builds the rows of the list.
-    private fun showPayments(payments: List<Payment>) {
+    private fun renderSummary(today: TodayState) {
+        binding.collectedValue.text = Money.format(today.collected)
+        binding.expensesValue.text = Money.format(today.expensesThisMonth)
+        binding.netValue.text = Money.format(today.netThisMonth)
+        binding.netValue.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                if (today.netThisMonth < 0) R.color.danger else R.color.success
+            )
+        )
+        binding.arrearsValue.text = Money.format(today.arrearsAmount)
+    }
+
+    private fun renderReceipts() {
         val rows = payments.map { payment ->
-            PaymentRow(
+            ReceiptMiniRow(
                 payment = payment,
-                tenantName = tenantNames[payment.tenantId] ?: getString(R.string.unknown_tenant),
-                propertyName = propertyNames[payment.propertyId]
-                    ?: getString(R.string.not_assigned)
+                tenantName = tenantNames[payment.tenantId] ?: "Tenant"
             )
         }
-        adapter.submitList(rows)
-        binding.emptyMessage.visibility = if (rows.isEmpty()) View.VISIBLE else View.GONE
+        receiptAdapter.submitList(rows)
+        binding.emptyReceipts.visibility =
+            if (rows.isEmpty()) View.VISIBLE else View.GONE
     }
 
-    private fun askToDelete(payment: Payment) {
+    private fun chooseBuildingForStatement() {
+        if (buildings.isEmpty()) {
+            Toast.makeText(requireContext(), "Add a building first", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val names = buildings.map { it.name }.toTypedArray()
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle(R.string.delete_payment)
-            .setMessage(getString(R.string.delete_payment_message, payment.amount))
-            .setNegativeButton(R.string.cancel, null)
-            .setPositiveButton(R.string.delete) { _, _ ->
-                viewModel.delete(payment)
-                Snackbar.make(binding.root, R.string.payment_deleted, Snackbar.LENGTH_SHORT).show()
+            .setTitle("Owner statement")
+            .setItems(names) { _, which ->
+                val building = buildings[which]
+                findNavController().navigate(
+                    R.id.ownerStatementFragment,
+                    Bundle().apply {
+                        putLong("buildingId", building.id)
+                        putString("month", viewModel.month)
+                    }
+                )
             }
             .show()
     }
