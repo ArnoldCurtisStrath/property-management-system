@@ -6,7 +6,7 @@ Every member speaks. The demo is live. The deck is only a backdrop.
 
 ## Before the room
 
-- Install the signed `Sahihi 2.0` APK on the emulator or phone.
+- Install the signed `Sahihi 2.1` APK on the emulator or phone.
 - Sign in once and leave the app on **Today**.
 - If the app was used for testing, clear the app data and load the sample
   portfolio again, so Grace owes Ksh 4,000 and John owes Ksh 4,000.
