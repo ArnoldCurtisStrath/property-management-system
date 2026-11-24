@@ -4,11 +4,10 @@ import android.Manifest
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -20,36 +19,43 @@ import com.example.propertymanagementsystem.databinding.ActivityMainBinding
 import com.example.propertymanagementsystem.ui.auth.LoginActivity
 import com.example.propertymanagementsystem.util.SessionManager
 import com.example.propertymanagementsystem.work.WorkScheduler
-import com.google.android.material.navigation.NavigationView
 
 /**
- * The main screen of the app.
+ * The shell of Sahihi.
  *
- * It holds the drawer, the toolbar and the navigation host. Every other
- * screen of the app is a fragment inside the navigation host, so the drawer
- * and the toolbar stay in one place and the back button works normally.
+ * The four top-level screens (Today, Buildings, Money, More) are reached
+ * from the bottom bar. Everything else is a detail screen with a back arrow.
+ * The drawer is gone: the agent's main actions are within one thumb.
  */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var session: SessionManager
     private lateinit var navController: NavController
-    private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    private val topLevelDestinations = setOf(
+        R.id.dashboardFragment,
+        R.id.buildingListFragment,
+        R.id.paymentHistoryFragment,
+        R.id.moreFragment
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         session = SessionManager(this)
-        drawerLayout = binding.drawerLayout
+        if (!session.isSignedIn()) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+            return
+        }
 
-        // The daily rent check is put in the background when the app opens.
         WorkScheduler.start(this)
 
-        // From Android 13 the user has to allow notifications, otherwise the
-        // rent reminder cannot be shown.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             requestPermissions(
                 arrayOf(Manifest.permission.POST_NOTIFICATIONS),
@@ -57,61 +63,39 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        // The system bars sit outside the paper, so the content never hides
+        // under the status bar or the gesture bar.
+        ViewCompat.setOnApplyWindowInsetsListener(binding.mainRoot) { view, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(0, bars.top, 0, bars.bottom)
+            insets
+        }
+
         setSupportActionBar(binding.toolbar)
 
-        // The navigation host is the place where the fragments are shown.
-        val navHost = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navHost = supportFragmentManager
+            .findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHost.navController
 
-        // The screens that are in the drawer are the top level screens. The
-        // toolbar shows a back arrow on any screen that is not one of them.
-        // The drawer layout is given to the AppBarConfiguration so the
-        // button that opens the drawer shows on the toolbar.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.dashboardFragment, R.id.aboutFragment),
-            drawerLayout
-        )
+        appBarConfiguration = AppBarConfiguration(topLevelDestinations)
         setupActionBarWithNavController(navController, appBarConfiguration)
+        binding.bottomNav.setupWithNavController(navController)
 
-        val navView = binding.navView
-        navView.setupWithNavController(navController)
-
-        // The drawer is closed once a screen has been opened.
-        navController.addOnDestinationChangedListener { _, _, _ ->
-            drawerLayout.closeDrawer(GravityCompat.START)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val isTopLevel = destination.id in topLevelDestinations
+            binding.toolbar.visibility = if (isTopLevel) android.view.View.GONE
+            else android.view.View.VISIBLE
+            binding.bottomNav.visibility = if (isTopLevel) android.view.View.VISIBLE
+            else android.view.View.GONE
+            binding.bottomDivider.visibility = binding.bottomNav.visibility
         }
-
-        // Show the email of the signed in person in the drawer header.
-        binding.navView.getHeaderView(0).findViewById<android.widget.TextView>(R.id.headerEmail)
-            .text = session.signedInEmail()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-
-    // The log out option is in the toolbar menu.
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_logout) {
-            session.signOut()
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-            finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    // Handles the back arrow on the toolbar.
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     companion object {
-        // The number used when the permission to send notifications is asked
-        // for.
         private const val REQUEST_NOTIFICATIONS = 100
     }
 }

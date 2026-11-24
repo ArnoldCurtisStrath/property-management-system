@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The navigation graph of the app. Every screen of the drawer is a
-     destination here, and the actions move between them. -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
@@ -9,27 +7,53 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.propertymanagementsystem.ui.dashboard.DashboardFragment"
-        android:label="@string/menu_dashboard">
+        android:label="@string/nav_today" />
 
+    <fragment
+        android:id="@+id/buildingListFragment"
+        android:name="com.example.propertymanagementsystem.ui.buildings.BuildingListFragment"
+        android:label="@string/nav_buildings">
         <action
-            android:id="@+id/action_dashboard_to_about"
-            app:destination="@id/aboutFragment" />
+            android:id="@+id/action_building_list_to_building_form"
+            app:destination="@id/buildingFormFragment" />
+        <action
+            android:id="@+id/action_building_list_to_building_details"
+            app:destination="@id/buildingDetailsFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/aboutFragment"
-        android:name="com.example.propertymanagementsystem.ui.about.AboutFragment"
-        android:label="@string/menu_about" />
+        android:id="@+id/buildingFormFragment"
+        android:name="com.example.propertymanagementsystem.ui.buildings.BuildingFormFragment"
+        android:label="@string/nav_buildings" />
+
+    <fragment
+        android:id="@+id/buildingDetailsFragment"
+        android:name="com.example.propertymanagementsystem.ui.buildings.BuildingDetailsFragment"
+        android:label="@string/nav_buildings">
+        <action
+            android:id="@+id/action_building_details_to_building_form"
+            app:destination="@id/buildingFormFragment" />
+        <action
+            android:id="@+id/action_building_details_to_property_list"
+            app:destination="@id/propertyListFragment" />
+        <action
+            android:id="@+id/action_building_details_to_owner_statement"
+            app:destination="@id/ownerStatementFragment" />
+        <action
+            android:id="@+id/action_building_details_to_expense_form"
+            app:destination="@id/expenseFormFragment" />
+        <action
+            android:id="@+id/action_building_details_to_maintenance_list"
+            app:destination="@id/maintenanceListFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/propertyListFragment"
         android:name="com.example.propertymanagementsystem.ui.properties.PropertyListFragment"
-        android:label="@string/menu_properties">
-
+        android:label="@string/units">
         <action
             android:id="@+id/action_property_list_to_property_form"
             app:destination="@id/propertyFormFragment" />
-
         <action
             android:id="@+id/action_property_list_to_property_details"
             app:destination="@id/propertyDetailsFragment" />
@@ -38,27 +62,33 @@
     <fragment
         android:id="@+id/propertyFormFragment"
         android:name="com.example.propertymanagementsystem.ui.properties.PropertyFormFragment"
-        android:label="@string/menu_properties" />
+        android:label="@string/units" />
 
     <fragment
         android:id="@+id/propertyDetailsFragment"
         android:name="com.example.propertymanagementsystem.ui.properties.PropertyDetailsFragment"
-        android:label="@string/menu_properties">
-
+        android:label="@string/units">
         <action
             android:id="@+id/action_property_details_to_property_form"
             app:destination="@id/propertyFormFragment" />
+        <action
+            android:id="@+id/action_property_details_to_tenant_form"
+            app:destination="@id/tenantFormFragment" />
+        <action
+            android:id="@+id/action_property_details_to_tenant_details"
+            app:destination="@id/tenantDetailsFragment" />
+        <action
+            android:id="@+id/action_property_details_to_maintenance_form"
+            app:destination="@id/maintenanceFormFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/tenantListFragment"
         android:name="com.example.propertymanagementsystem.ui.tenants.TenantListFragment"
-        android:label="@string/menu_tenants">
-
+        android:label="@string/nav_people">
         <action
             android:id="@+id/action_tenant_list_to_tenant_form"
             app:destination="@id/tenantFormFragment" />
-
         <action
             android:id="@+id/action_tenant_list_to_tenant_details"
             app:destination="@id/tenantDetailsFragment" />
@@ -67,17 +97,15 @@
     <fragment
         android:id="@+id/tenantFormFragment"
         android:name="com.example.propertymanagementsystem.ui.tenants.TenantFormFragment"
-        android:label="@string/menu_tenants" />
+        android:label="@string/nav_people" />
 
     <fragment
         android:id="@+id/tenantDetailsFragment"
         android:name="com.example.propertymanagementsystem.ui.tenants.TenantDetailsFragment"
-        android:label="@string/menu_tenants">
-
+        android:label="@string/nav_people">
         <action
             android:id="@+id/action_tenant_details_to_tenant_form"
             app:destination="@id/tenantFormFragment" />
-
         <action
             android:id="@+id/action_tenant_details_to_payment_history"
             app:destination="@id/paymentHistoryFragment" />
@@ -86,23 +114,58 @@
     <fragment
         android:id="@+id/paymentHistoryFragment"
         android:name="com.example.propertymanagementsystem.ui.payments.PaymentHistoryFragment"
-        android:label="@string/payment_history">
-
+        android:label="@string/nav_money">
         <action
             android:id="@+id/action_payment_history_to_payment_form"
             app:destination="@id/paymentFormFragment" />
+        <action
+            android:id="@+id/action_payment_history_to_expense_form"
+            app:destination="@id/expenseFormFragment" />
+        <action
+            android:id="@+id/action_payment_history_to_owner_statement"
+            app:destination="@id/ownerStatementFragment" />
+        <action
+            android:id="@+id/action_payment_history_to_mpesa"
+            app:destination="@id/mpesaFragment" />
+        <action
+            android:id="@+id/action_payment_history_to_day_close"
+            app:destination="@id/dayCloseFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/paymentFormFragment"
         android:name="com.example.propertymanagementsystem.ui.payments.PaymentFormFragment"
-        android:label="@string/payment_history" />
+        android:label="@string/nav_money" />
+
+    <fragment
+        android:id="@+id/mpesaFragment"
+        android:name="com.example.propertymanagementsystem.ui.payments.MpesaFragment"
+        android:label="@string/mpesa_title" />
+
+    <fragment
+        android:id="@+id/receiptFragment"
+        android:name="com.example.propertymanagementsystem.ui.payments.ReceiptFragment"
+        android:label="@string/receipt_title" />
+
+    <fragment
+        android:id="@+id/expenseFormFragment"
+        android:name="com.example.propertymanagementsystem.ui.expenses.ExpenseFormFragment"
+        android:label="@string/expense_title" />
+
+    <fragment
+        android:id="@+id/ownerStatementFragment"
+        android:name="com.example.propertymanagementsystem.ui.statements.OwnerStatementFragment"
+        android:label="@string/statement_title" />
+
+    <fragment
+        android:id="@+id/dayCloseFragment"
+        android:name="com.example.propertymanagementsystem.ui.dayclose.DayCloseFragment"
+        android:label="@string/day_close_title" />
 
     <fragment
         android:id="@+id/maintenanceListFragment"
         android:name="com.example.propertymanagementsystem.ui.maintenance.MaintenanceListFragment"
         android:label="@string/menu_maintenance">
-
         <action
             android:id="@+id/action_maintenance_list_to_maintenance_form"
             app:destination="@id/maintenanceFormFragment" />
@@ -112,4 +175,35 @@
         android:id="@+id/maintenanceFormFragment"
         android:name="com.example.propertymanagementsystem.ui.maintenance.MaintenanceFormFragment"
         android:label="@string/menu_maintenance" />
+
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.example.propertymanagementsystem.ui.more.MoreFragment"
+        android:label="@string/nav_more">
+        <action
+            android:id="@+id/action_more_to_building_list"
+            app:destination="@id/buildingListFragment" />
+        <action
+            android:id="@+id/action_more_to_tenant_list"
+            app:destination="@id/tenantListFragment" />
+        <action
+            android:id="@+id/action_more_to_maintenance_list"
+            app:destination="@id/maintenanceListFragment" />
+        <action
+            android:id="@+id/action_more_to_settings"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_more_to_about"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.propertymanagementsystem.ui.settings.SettingsFragment"
+        android:label="@string/settings_title" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.propertymanagementsystem.ui.about.AboutFragment"
+        android:label="@string/menu_about" />
 </navigation>

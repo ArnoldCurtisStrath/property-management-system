@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Type. DM Serif for the big statements, DM Sans for the interface,
+         DM Mono for every number that has to line up. -->
+    <style name="TextAppearance.Sahihi.Display" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="android:fontFamily">@font/dm_serif_display</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:lineSpacingMultiplier">0.95</item>
+    </style>
+
+    <style name="TextAppearance.Sahihi.Headline" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:fontFamily">@font/dm_serif_display</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:textColor">@color/ink</item>
+    </style>
+
+    <style name="TextAppearance.Sahihi.Title" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/ink</item>
+    </style>
+
+    <style name="TextAppearance.Sahihi.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:lineSpacingMultiplier">1.15</item>
+    </style>
+
+    <style name="TextAppearance.Sahihi.Body.Muted" parent="TextAppearance.Sahihi.Body">
+        <item name="android:textColor">@color/muted</item>
+    </style>
+
+    <style name="TextAppearance.Sahihi.Label" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.09</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/muted</item>
+    </style>
+
+    <style name="TextAppearance.Sahihi.Money" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:fontFamily">@font/dm_mono</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/ink</item>
+    </style>
+
+    <style name="TextAppearance.Sahihi.Money.Large" parent="TextAppearance.Sahihi.Money">
+        <item name="android:textSize">38sp</item>
+    </style>
+
+    <style name="TextAppearance.Sahihi.Money.Small" parent="TextAppearance.Sahihi.Money">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="TextAppearance.Sahihi.Money.Paper" parent="TextAppearance.Sahihi.Money">
+        <item name="android:textColor">@color/paper_surface</item>
+    </style>
+
+    <!-- Components. -->
+    <style name="Widget.Sahihi.Button" parent="Widget.Material3.Button">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textColor">@color/paper_surface</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="cornerRadius">14dp</item>
+    </style>
+
+    <style name="Widget.Sahihi.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:fontFamily">@font/dm_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="strokeColor">@color/line</item>
+        <item name="cornerRadius">14dp</item>
+    </style>
+
+    <style name="Widget.Sahihi.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/paper_surface</item>
+        <item name="cardCornerRadius">18dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/line</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="Widget.Sahihi.Card.Forest" parent="Widget.Sahihi.Card">
+        <item name="cardBackgroundColor">@color/primary</item>
+        <item name="strokeColor">@color/primary</item>
+    </style>
+
+    <style name="Widget.Sahihi.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">14dp</item>
+        <item name="boxCornerRadiusTopEnd">14dp</item>
+        <item name="boxCornerRadiusBottomStart">14dp</item>
+        <item name="boxCornerRadiusBottomEnd">14dp</item>
+        <item name="boxStrokeColor">@color/line</item>
+        <item name="hintTextColor">@color/muted</item>
+        <item name="android:textColorHint">@color/muted</item>
+    </style>
+
+    <style name="Widget.Sahihi.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/paper</item>
+        <item name="titleTextColor">@color/ink</item>
+        <item name="subtitleTextColor">@color/muted</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <!-- Old styles used by the existing screens. They now inherit the brand. -->
+    <style name="CardTitle" parent="TextAppearance.Sahihi.Label" />
+    <style name="CardValue" parent="TextAppearance.Sahihi.Money" />
+    <style name="ToolbarStyle" parent="Widget.Sahihi.Toolbar" />
+</resources>

@@ -1,48 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The sign in screen. -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:fillViewport="true">
+    android:background="@color/paper"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingTop="@dimen/space_3xl"
+        android:paddingEnd="@dimen/screen_padding"
+        android:paddingBottom="@dimen/space_3xl">
 
         <ImageView
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_marginTop="48dp"
-            android:background="@color/primary"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_marginTop="@dimen/space_2xl"
             android:contentDescription="@string/app_name"
-            android:padding="20dp"
-            android:src="@drawable/ic_property" />
+            android:src="@drawable/ic_sahihi_mark" />
 
         <TextView
+            style="@style/TextAppearance.Sahihi.Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/login_title"
-            android:textColor="@color/text_primary"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="SAHIHI"
+            android:textColor="@color/gold" />
 
         <TextView
+            style="@style/TextAppearance.Sahihi.Headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:text="@string/login_subtitle"
-            android:textColor="@color/text_secondary"
-            android:textSize="14sp" />
+            android:layout_marginTop="@dimen/space_xs"
+            android:gravity="center"
+            android:text="The rent ledger for property agents" />
+
+        <TextView
+            style="@style/TextAppearance.Sahihi.Body.Muted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:layout_marginBottom="@dimen/space_2xl"
+            android:gravity="center"
+            android:text="Sign in to run the buildings, the money and the owners' statements." />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailLayout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/Widget.Sahihi.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email">
@@ -56,12 +65,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordLayout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/Widget.Sahihi.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/space_md"
             android:hint="@string/password"
-            app:passwordToggleEnabled="true">
+            app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordInput"
@@ -72,19 +81,31 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/loginButton"
+            style="@style/Widget.Sahihi.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/space_xl"
             android:text="@string/sign_in" />
 
         <TextView
             android:id="@+id/goToRegisterButton"
+            style="@style/TextAppearance.Sahihi.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:padding="8dp"
+            android:layout_marginTop="@dimen/space_md"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/space_sm"
             android:text="@string/go_to_register"
-            android:textColor="@color/primary"
+            android:textColor="@color/secondary"
             android:textStyle="bold" />
+
+        <TextView
+            style="@style/TextAppearance.Sahihi.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_3xl"
+            android:gravity="center"
+            android:text="EVERY SHILLING, ACCOUNTED FOR" />
     </LinearLayout>
 </ScrollView>

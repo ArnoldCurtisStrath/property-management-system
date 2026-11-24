@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.propertymanagementsystem.R
 import com.example.propertymanagementsystem.databinding.ActivityLoginBinding
 import com.example.propertymanagementsystem.ui.main.MainActivity
@@ -22,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var session: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)

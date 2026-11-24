@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- The receipt. -->
+    <path
+        android:fillColor="@color/primary"
+        android:pathData="M30,18 L78,18 L78,86 L72,81 L66,86 L60,81 L54,86 L48,81 L42,86 L36,81 L30,86 Z" />
+
+    <!-- The lines of the ledger. -->
+    <path android:fillColor="@color/paper_surface" android:pathData="M39,30 H69 V33 H39 Z" />
+    <path android:fillColor="@color/paper_surface" android:pathData="M39,37 H61 V40 H39 Z" />
+    <path android:fillColor="@color/paper_surface" android:pathData="M39,44 H66 V47 H39 Z" />
+
+    <!-- The stamp. -->
+    <path
+        android:fillColor="@color/gold"
+        android:pathData="M54,52 m-15,0 a15,15 0,1 1,30 0 a15,15 0,1 1,-30 0" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M46,58 L52,64 L63,51"
+        android:strokeColor="@color/primary"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="4" />
+</vector>

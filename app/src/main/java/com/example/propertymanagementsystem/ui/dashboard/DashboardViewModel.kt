@@ -3,41 +3,34 @@ package com.example.propertymanagementsystem.ui.dashboard
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
-import com.example.propertymanagementsystem.data.local.AppDatabase
-import com.example.propertymanagementsystem.data.model.Property
+import com.example.propertymanagementsystem.SahihiApp
+import com.example.propertymanagementsystem.data.ledger.TodayState
+import com.example.propertymanagementsystem.data.model.Tenant
 import com.example.propertymanagementsystem.util.Dates
+import com.example.propertymanagementsystem.util.SessionManager
 
 /**
- * Holds the numbers that are shown on the dashboard.
- *
- * The ViewModel gets the data from the repositories, which read it from the
- * database. The screen only observes the values and puts them in the cards,
- * so the numbers are always the ones in the database.
+ * The day book. It observes the ledger repository, so every number on the
+ * Today screen changes by itself when a payment, expense or repair is saved.
  */
 class DashboardViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val propertyDao = AppDatabase.getInstance(application).propertyDao()
+    private val container = (application as SahihiApp).container
 
-    // The payments are needed for the amount of rent that has been collected.
-    private val paymentDao = AppDatabase.getInstance(application).paymentDao()
+    val today: LiveData<TodayState> = container.ledger.today
 
-    // The requests are needed for the number of problems that are still open.
-    private val maintenanceDao = AppDatabase.getInstance(application).maintenanceDao()
+    val tenants: LiveData<List<Tenant>> = container.ledger.tenants
 
-    // The number of properties the landlord has.
-    val propertyCount: LiveData<Int> = propertyDao.getAll().map { it.size }
+    val dateLabel: String = Dates.longDate()
 
-    // How many of those properties are currently rented out.
-    val occupiedCount: LiveData<Int> = propertyDao.countByStatus(Property.STATUS_OCCUPIED)
-
-    // How many are empty and could be advertised.
-    val vacantCount: LiveData<Int> = propertyDao.countByStatus(Property.STATUS_VACANT)
-
-    // How much rent has been collected in the current month.
-    val collectedThisMonth: LiveData<Double> =
-        paymentDao.totalCollectedInMonth(Dates.currentMonth())
-
-    // How many maintenance requests are still open.
-    val openRequestCount: LiveData<Int> = maintenanceDao.countOpen()
+    val greetingName: String = run {
+        val configured = container.settings.agentName.trim()
+        if (configured.isNotEmpty()) {
+            configured.split(" ").firstOrNull().orEmpty()
+        } else {
+            val email = SessionManager(application).signedInEmail()
+            val prefix = email.substringBefore("@").replace(".", " ").trim()
+            prefix.split(" ").firstOrNull()?.replaceFirstChar { it.uppercase() }.orEmpty()
+        }
+    }.ifBlank { "there" }
 }
