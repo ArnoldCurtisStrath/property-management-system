@@ -122,9 +122,9 @@ Go to **Buildings → Kasarani Bedsitters**. Scroll to the net-to-owner figure.
 
 **Say:**
 
-> This is the document that keeps the client. Collected Ksh 19,500. Expenses
+> This is the document that keeps the client. Collected Ksh 13,000. Expenses
 > Ksh 4,000: water 2,500 and security 1,500. The management fee is 10%, so
-> Ksh 1,950. Net to the owner: Ksh 13,550. Arrears and vacancy loss are shown
+> Ksh 1,300. Net to the owner: Ksh 7,700. Arrears and vacancy loss are shown
 > separately so nothing is hidden inside the net.
 
 Tap **Send owner statement**. Show the statement screen and the share
@@ -142,8 +142,9 @@ From the building screen tap **Repairs**.
 Open the roof leak. Show the **Urgent** priority and the cost field. Go back
 to the building and scroll to **Visit planner**.
 
-> The weather is not a decoration. Kasarani has 94% rain in the forecast and
-> two open roof repairs. The agent plans the visit before the rain, not after.
+> The weather is not a decoration. Kasarani has a high chance of rain in the
+> forecast and two open roof repairs. The agent plans the visit before the
+> rain, not after.
 
 ## Part 7 — The daily brief (Naaadir, 5:10–5:45)
 
@@ -154,7 +155,7 @@ Pull down the notification shade.
 **Say:**
 
 > WorkManager builds the same ledger snapshot at 7am, even if the app is
-> closed. Ksh 79,500 of Ksh 113,000 collected, four tenants owe Ksh 45,500,
+> closed. Ksh 73,000 of Ksh 113,000 collected, five tenants owe Ksh 52,000,
 > three repairs open. It survives the phone being switched off. That is why
 > it is WorkManager and not a timer.
 
