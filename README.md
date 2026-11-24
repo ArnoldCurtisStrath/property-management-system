@@ -189,7 +189,7 @@ The test suite covers:
 | Naaadir Abdulaziz Rana | 189548 | API, daily brief and release |
 
 Version 1.0 of the project was built through the pull requests linked in the
-repository history. Version 2.0 is the Sahihi ledger.
+repository history. Version 2.1 is the Sahihi rent book.
 
 The repository is still called `property-management-system` for continuity
 with the CAT 2 submission and the existing release links. The product inside
