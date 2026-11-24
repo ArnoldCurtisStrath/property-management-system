@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The house in the middle of the launcher icon. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+
+    <!-- Adaptive icon foreground: a cream receipt on the forest background. -->
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M54,28 L80,50 L73,50 L73,76 L57,76 L57,60 L51,60 L51,76 L35,76 L35,50 L28,50 Z" />
+        android:fillColor="@color/paper_surface"
+        android:pathData="M32,22 L76,22 L76,86 L70,81 L64,86 L58,81 L52,86 L46,81 L40,86 L34,81 L32,86 Z" />
+
+    <path android:fillColor="@color/primary" android:pathData="M41,33 H67 V36 H41 Z" />
+    <path android:fillColor="@color/primary" android:pathData="M41,40 H59 V43 H41 Z" />
+    <path android:fillColor="@color/primary" android:pathData="M41,47 H64 V50 H41 Z" />
+
+    <path
+        android:fillColor="@color/gold"
+        android:pathData="M54,61 m-14,0 a14,14 0,1 1,28 0 a14,14 0,1 1,-28 0" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M47,66 L52,71 L62,59"
+        android:strokeColor="@color/primary"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="4" />
 </vector>

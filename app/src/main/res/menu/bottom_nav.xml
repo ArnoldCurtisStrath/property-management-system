@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/dashboardFragment"
+        android:icon="@drawable/ic_dashboard"
+        android:title="@string/nav_today" />
+    <item
+        android:id="@+id/buildingListFragment"
+        android:icon="@drawable/ic_building"
+        android:title="@string/nav_buildings" />
+    <item
+        android:id="@+id/paymentHistoryFragment"
+        android:icon="@drawable/ic_wallet"
+        android:title="@string/nav_money" />
+    <item
+        android:id="@+id/moreFragment"
+        android:icon="@drawable/ic_about"
+        android:title="@string/nav_more" />
+</menu>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Property Management</string>
+    <string name="app_name">Sahihi</string>
 
     <!-- Sign in and create account screens. -->
-    <string name="login_title">Property Management</string>
-    <string name="login_subtitle">Sign in to manage your properties</string>
+    <string name="login_title">Sahihi</string>
+    <string name="login_subtitle">The rent ledger for property agents</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="full_name">Full name</string>
@@ -38,7 +38,7 @@
     <string name="property_missing">Add a property first</string>
 
     <!-- The about screen. -->
-    <string name="about_description">Property Management helps a landlord keep track of the properties they rent out. The tenants living in each house, the rent that has been paid, the money that is still outstanding and the repairs that need to be done are all kept in one place on the phone.</string>
+    <string name="about_description">Sahihi is the rent ledger for property agents. It keeps the buildings, the units, the tenants, the rent, the expenses and the repairs in one book, and turns them into receipts, balances and owner statements that all four people can trust: the agent, the owner, the caretaker and the tenant.</string>
     <string name="about_version">Version %1$s</string>
     <string name="about_team">%1$s</string>
     <string name="team_header">The team</string>
@@ -59,4 +59,24 @@
     <string name="menu_maintenance">Maintenance</string>
     <string name="menu_about">About</string>
     <string name="logout">Log out</string>
+
+    <!-- Sahihi v2 -->
+    <string name="building_label">Building</string>
+    <string name="save_unit">Save unit</string>
+    <string name="edit_unit">Edit unit</string>
+    <string name="add_building_first">Add a building first</string>
+
+    <!-- v2 navigation and screens -->
+    <string name="nav_today">Today</string>
+    <string name="nav_buildings">Buildings</string>
+    <string name="nav_money">Money</string>
+    <string name="nav_more">More</string>
+    <string name="nav_people">People</string>
+    <string name="units">Units</string>
+    <string name="mpesa_title">M-Pesa</string>
+    <string name="receipt_title">Receipt</string>
+    <string name="expense_title">Add expense</string>
+    <string name="statement_title">Owner statement</string>
+    <string name="day_close_title">Day close</string>
+    <string name="settings_title">Business settings</string>
 </resources>

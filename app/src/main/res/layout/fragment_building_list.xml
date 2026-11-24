@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/paper"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
+
+        <TextView
+            style="@style/TextAppearance.Sahihi.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="YOUR PORTFOLIO"
+            android:textColor="@color/gold" />
+
+        <TextView
+            style="@style/TextAppearance.Sahihi.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xs"
+            android:text="Buildings" />
+
+        <TextView
+            style="@style/TextAppearance.Sahihi.Body.Muted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Every building, every owner, one book." />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Sahihi.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/space_lg">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.Sahihi.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BUILDINGS" />
+
+                    <TextView
+                        android:id="@+id/totalBuildings"
+                        style="@style/TextAppearance.Sahihi.Money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="0" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.Sahihi.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="UNITS" />
+
+                    <TextView
+                        android:id="@+id/totalUnits"
+                        style="@style/TextAppearance.Sahihi.Money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="0" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.Sahihi.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ARREARS" />
+
+                    <TextView
+                        android:id="@+id/totalArrears"
+                        style="@style/TextAppearance.Sahihi.Money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Ksh 0"
+                        android:textColor="@color/danger" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addBuildingButton"
+            style="@style/Widget.Sahihi.Button.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:text="Add building"
+            app:icon="@drawable/ic_add"
+            app:iconTint="@color/ink" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/buildingList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:nestedScrollingEnabled="false" />
+
+        <TextView
+            android:id="@+id/emptyMessage"
+            style="@style/TextAppearance.Sahihi.Body.Muted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2xl"
+            android:gravity="center"
+            android:text="No buildings yet. Add your first building, or load the sample portfolio from More."
+            android:visibility="gone" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

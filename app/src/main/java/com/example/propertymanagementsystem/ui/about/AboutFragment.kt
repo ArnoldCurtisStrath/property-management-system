@@ -31,15 +31,15 @@ class AboutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.appVersion.text = getString(R.string.about_version, "1.0")
+        binding.appVersion.text = getString(R.string.about_version, "2.0")
         binding.teamList.text = getString(
             R.string.about_team,
-            "Arnold Wangai Mbici - Lead\n" +
-                "Kabutha Joe Mwangi - Properties\n" +
-                "Kwendo Andrew Abel - Tenants\n" +
-                "Lusiola Erika Wambui - Payments\n" +
-                "Leon Onyancha Ouya - Maintenance\n" +
-                "Naaadir Abdulaziz Rana - API and background work"
+            "Arnold Wangai Mbici — Lead, ledger, architecture and documentation\n" +
+                "Kabutha Joe Mwangi — Buildings, units and the Today screen\n" +
+                "Kwendo Andrew Abel — Tenants, ledger and receipts\n" +
+                "Lusiola Erika Wambui — Payments, M-Pesa and owner statements\n" +
+                "Leon Onyancha Ouya — Repairs, weather and the property pulse\n" +
+                "Naaadir Abdulaziz Rana — API, daily brief and release"
         )
     }
 

@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- The main colour of the app. A calm green, used for the toolbar and buttons. -->
-    <color name="primary">#1F6F5C</color>
-    <color name="primary_dark">#14503F</color>
-    <color name="secondary">#E07A3F</color>
-
-    <!-- Plain colours used inside the screens. -->
+    <!-- Sahihi: paper and ink. -->
+    <color name="paper">#F7F1E3</color>
+    <color name="paper_surface">#FFFDF7</color>
+    <color name="ink">#1C1B18</color>
+    <color name="muted">#7C7568</color>
+    <color name="line">#E4DBCB</color>
+    <color name="primary">#0F3D2E</color>
+    <color name="primary_dark">#0A2C21</color>
+    <color name="secondary">#D4552D</color>
+    <color name="gold">#C9A227</color>
+    <color name="gold_dark">#7A5B00</color>
+    <color name="success">#2F6B4F</color>
+    <color name="danger">#B3261E</color>
+    <color name="forest_soft">#E7EEE9</color>
+    <color name="vermilion_soft">#F8E6DF</color>
+    <color name="gold_soft">#F4ECD2</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="background">#F6F8F7</color>
-    <color name="surface">#FFFFFF</color>
-    <color name="text_primary">#1B1B1B</color>
-    <color name="text_secondary">#5F6B66</color>
-    <color name="divider">#E1E6E4</color>
 
-    <!-- Status colours used for the states of a payment and a request. -->
-    <color name="status_paid">#2E7D32</color>
-    <color name="status_pending">#E07A3F</color>
-    <color name="status_overdue">#C62828</color>
-    <color name="status_open">#1565C0</color>
-    <color name="status_done">#2E7D32</color>
+    <!-- The old names are kept so every existing screen picks up the new look. -->
+    <color name="background">#F7F1E3</color>
+    <color name="surface">#FFFDF7</color>
+    <color name="text_primary">#1C1B18</color>
+    <color name="text_secondary">#7C7568</color>
+    <color name="divider">#E4DBCB</color>
 
-    <color name="ic_launcher_background">#1F6F5C</color>
+    <color name="status_paid">#2F6B4F</color>
+    <color name="status_pending">#C9A227</color>
+    <color name="status_overdue">#B3261E</color>
+    <color name="status_open">#D4552D</color>
+    <color name="status_done">#2F6B4F</color>
+
+    <color name="ic_launcher_background">#0F3D2E</color>
 </resources>

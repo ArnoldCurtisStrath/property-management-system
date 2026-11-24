@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The form used to add a property and to change one. -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
@@ -10,21 +8,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="@dimen/screen_padding">
 
         <TextView
             android:id="@+id/formTitle"
+            style="@style/TextAppearance.Sahihi.Headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="@string/add_property"
-            android:textColor="@color/text_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="@dimen/space_xl"
+            android:text="@string/add_property" />
+
+        <TextView
+            style="@style/TextAppearance.Sahihi.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/building_label" />
+
+        <Spinner
+            android:id="@+id/buildingSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/space_xs"
+            android:layout_marginBottom="@dimen/space_md" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nameLayout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/Widget.Sahihi.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/property_name_hint">
@@ -38,10 +47,11 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/addressLayout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/Widget.Sahihi.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/space_md"
+            android:visibility="gone"
             android:hint="@string/property_address_hint">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -53,10 +63,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/rentLayout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/Widget.Sahihi.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/space_md"
             android:hint="@string/property_rent_hint">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -67,46 +77,45 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            style="@style/TextAppearance.Sahihi.Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/property_type_hint"
-            android:textColor="@color/text_secondary"
-            android:textSize="13sp" />
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="@string/property_type_hint" />
 
         <Spinner
             android:id="@+id/typeSpinner"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="@dimen/space_xs" />
 
         <TextView
+            style="@style/TextAppearance.Sahihi.Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/property_status_hint"
-            android:textColor="@color/text_secondary"
-            android:textSize="13sp" />
+            android:layout_marginTop="@dimen/space_md"
+            android:text="@string/property_status_hint" />
 
         <Spinner
             android:id="@+id/statusSpinner"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="@dimen/space_xs" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/saveButton"
+            style="@style/Widget.Sahihi.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/save" />
+            android:layout_marginTop="@dimen/space_2xl"
+            android:text="@string/save_unit" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/cancelButton"
-            style="@style/Widget.Material3.Button.TextButton"
+            style="@style/Widget.Sahihi.Button.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/space_sm"
             android:text="@string/cancel" />
     </LinearLayout>
 </ScrollView>
