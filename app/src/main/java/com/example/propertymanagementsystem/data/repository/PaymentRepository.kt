@@ -4,9 +4,6 @@ import androidx.lifecycle.LiveData
 import com.example.propertymanagementsystem.data.local.PaymentDao
 import com.example.propertymanagementsystem.data.model.Payment
 
-/**
- * Sits between the ViewModel and the payments table.
- */
 class PaymentRepository(private val dao: PaymentDao) {
 
     fun getAll(): LiveData<List<Payment>> = dao.getAll()
@@ -15,11 +12,25 @@ class PaymentRepository(private val dao: PaymentDao) {
 
     fun getForMonth(month: String): LiveData<List<Payment>> = dao.getForMonth(month)
 
-    // How much rent was collected in a month, used on the dashboard.
+    fun getForBuilding(buildingId: Long): LiveData<List<Payment>> =
+        dao.getForBuilding(buildingId)
+
+    fun getForDate(date: String): LiveData<List<Payment>> = dao.getForDate(date)
+
+    suspend fun getAllOnce(): List<Payment> = dao.getAllOnce()
+
+    suspend fun getForTenantOnce(tenantId: Long): List<Payment> = dao.getForTenantOnce(tenantId)
+
+    suspend fun getForMonthOnce(month: String): List<Payment> = dao.getForMonthOnce(month)
+
+    suspend fun getForDateOnce(date: String): List<Payment> = dao.getForDateOnce(date)
+
     fun totalCollectedInMonth(month: String): LiveData<Double> =
         dao.totalCollectedInMonth(month)
 
-    // What one tenant has paid for one month, used on the tenant screen.
+    fun totalCollectedInMonthForBuilding(buildingId: Long, month: String): LiveData<Double> =
+        dao.totalCollectedInMonthForBuilding(buildingId, month)
+
     fun totalPaidByTenant(tenantId: Long, month: String): LiveData<Double> =
         dao.totalPaidByTenant(tenantId, month)
 

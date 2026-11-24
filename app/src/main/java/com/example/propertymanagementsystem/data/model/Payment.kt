@@ -1,5 +1,6 @@
 package com.example.propertymanagementsystem.data.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
@@ -8,9 +9,9 @@ import androidx.room.PrimaryKey
 /**
  * A rent payment that was recorded against a tenant.
  *
- * The payment keeps the month it was paid for, not only the day it was
- * entered. That is what allows the app to tell whether a tenant has paid
- * for the current month or still owes.
+ * A payment is never just "paid". It carries the receipt number, the method,
+ * the reference, who collected it and the balance after it was posted. Those
+ * details are what make the receipt and the day close defensible.
  */
 @Entity(
     tableName = "payments",
@@ -22,19 +23,21 @@ import androidx.room.PrimaryKey
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index("tenantId")]
+    indices = [Index("tenantId"), Index("buildingId")]
 )
 data class Payment(
 
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
 
-    // The tenant who made the payment.
     val tenantId: Long,
 
-    // The property is also kept here so the portfolio list does not have to
-    // look up the tenant first.
+    // The unit and the building are kept here so reports do not have to walk
+    // through the tenant table for every row.
     val propertyId: Long,
+
+    @ColumnInfo(defaultValue = "0")
+    val buildingId: Long = 0,
 
     val amount: Double,
 
@@ -48,7 +51,27 @@ data class Payment(
     val method: String,
 
     // PAID when the money was received, PENDING when it was promised.
-    val status: String
+    val status: String,
+
+    // The printed receipt number, for example SH-2026-0007.
+    @ColumnInfo(defaultValue = "''")
+    val receiptNumber: String = "",
+
+    // The M-Pesa code or bank reference.
+    val reference: String? = null,
+
+    val note: String? = null,
+
+    // Who collected the money: the agent or a caretaker.
+    @ColumnInfo(defaultValue = "'Owner'")
+    val recordedBy: String = "Owner",
+
+    // The tenant's balance immediately after this payment was posted. It is
+    // stored so a re-printed receipt always shows the same figure.
+    val balanceAfter: Double? = null,
+
+    @ColumnInfo(defaultValue = "0")
+    val createdAt: Long = System.currentTimeMillis()
 ) {
     companion object {
         const val METHOD_CASH = "Cash"
