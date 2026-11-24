@@ -1,132 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Everything that is known about one tenant. -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/paper"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="@dimen/screen_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TENANT LEDGER"
+                    android:textColor="@color/gold" />
+
+                <TextView
+                    android:id="@+id/tenantName"
+                    style="@style/TextAppearance.Sahihi.Headline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_xs"
+                    android:text="Tenant" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/editButton"
+                style="@style/TextAppearance.Sahihi.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/space_sm"
+                android:text="EDIT"
+                android:textColor="@color/secondary" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tenantName"
+            android:id="@+id/unitLine"
+            style="@style/TextAppearance.Sahihi.Body.Muted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_primary"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="Building · Unit" />
 
-        <com.google.android.material.card.MaterialCardView
+        <TextView
+            android:id="@+id/contactLine"
+            style="@style/TextAppearance.Sahihi.Body.Muted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/divider"
-            app:strokeWidth="1dp">
+            android:layout_marginTop="2dp"
+            android:text="Phone · Email" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:background="@drawable/bg_hero"
+            android:padding="@dimen/space_xl">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextAppearance.Sahihi.Label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="BALANCE"
+                        android:textColor="@color/gold" />
+
+                    <TextView
+                        android:id="@+id/statusChip"
+                        style="@style/TextAppearance.Sahihi.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chip_paid"
+                        android:paddingStart="8dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="2dp"
+                        android:text="PAID"
+                        android:textColor="@color/primary" />
+                </LinearLayout>
 
                 <TextView
-                    style="@style/CardTitle"
+                    android:id="@+id/balanceValue"
+                    style="@style/TextAppearance.Sahihi.Money.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tenant_phone_hint" />
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:text="Ksh 0"
+                    android:textColor="@color/paper_surface" />
 
                 <TextView
-                    android:id="@+id/tenantPhone"
+                    android:id="@+id/agingLine"
+                    style="@style/TextAppearance.Sahihi.Body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp" />
+                    android:layout_marginTop="2dp"
+                    android:text="Current"
+                    android:textColor="#C9D6D0" />
 
-                <TextView
-                    style="@style/CardTitle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="@string/tenant_email_hint" />
+                    android:layout_marginTop="@dimen/space_lg"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tenantEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/collectButton"
+                        style="@style/Widget.Sahihi.Button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Collect rent"
+                        android:textColor="@color/primary"
+                        app:backgroundTint="@color/paper_surface"
+                        app:icon="@drawable/ic_receipt"
+                        app:iconTint="@color/primary" />
 
-                <TextView
-                    style="@style/CardTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="@string/tenant_rent_hint" />
-
-                <TextView
-                    android:id="@+id/tenantRent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    style="@style/CardTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="@string/tenant_property_hint" />
-
-                <TextView
-                    android:id="@+id/tenantProperty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp" />
-
-                <TextView
-                    style="@style/CardTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="@string/tenant_start_date_hint" />
-
-                <TextView
-                    android:id="@+id/tenantStartDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/statementButton"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_sm"
+                        android:layout_weight="1"
+                        android:text="Statement"
+                        android:textColor="@color/paper_surface"
+                        app:cornerRadius="14dp"
+                        app:icon="@drawable/ic_share"
+                        app:iconTint="@color/paper_surface"
+                        app:strokeColor="@color/paper_surface" />
+                </LinearLayout>
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/paymentsButton"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/view_payments" />
+            android:layout_marginTop="@dimen/space_md"
+            android:orientation="horizontal">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/editButton"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/remindButton"
+                style="@style/Widget.Sahihi.Button.Outlined"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Send reminder" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/deleteTenantButton"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Delete tenant"
+                android:textColor="@color/danger" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/termsLine"
+            style="@style/TextAppearance.Sahihi.Body.Muted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/edit" />
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="Rent Ksh 0 · Deposit Ksh 0 · Due day 1" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/deleteButton"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+        <TextView
+            style="@style/TextAppearance.Sahihi.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2xl"
+            android:text="Ledger" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ledgerList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/delete" />
+            android:layout_marginTop="@dimen/space_xs"
+            android:nestedScrollingEnabled="false" />
+
+        <TextView
+            android:id="@+id/emptyLedger"
+            style="@style/TextAppearance.Sahihi.Body.Muted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="No entries yet."
+            android:visibility="gone" />
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
