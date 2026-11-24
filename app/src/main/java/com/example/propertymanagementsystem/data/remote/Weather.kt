@@ -1,15 +1,20 @@
 package com.example.propertymanagementsystem.data.remote
 
 /**
- * The weather that was found for a property.
+ * The weather that was found for a property, including the next few days.
  */
 data class Weather(
-    // The name of the place the API found for the address.
     val place: String,
-
-    // The temperature in degrees celsius.
     val temperature: Double,
+    val description: String,
+    val days: List<WeatherDay> = emptyList()
+) {
+    val rainLikely: Boolean get() = days.any { it.rainChance >= 60 }
+}
 
-    // The weather in words, for example "Partly cloudy".
+data class WeatherDay(
+    val date: String,
+    val maxTemperature: Double,
+    val rainChance: Int,
     val description: String
 )
