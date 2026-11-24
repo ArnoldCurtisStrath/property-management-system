@@ -15,7 +15,7 @@
     <path android:fillColor="@color/primary" android:pathData="M41,47 H64 V50 H41 Z" />
 
     <path
-        android:fillColor="@color/gold"
+        android:fillColor="@color/stamp"
         android:pathData="M54,61 m-14,0 a14,14 0,1 1,28 0 a14,14 0,1 1,-28 0" />
     <path
         android:fillColor="@android:color/transparent"
