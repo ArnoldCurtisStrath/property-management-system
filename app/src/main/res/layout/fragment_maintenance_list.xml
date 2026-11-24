@@ -15,18 +15,12 @@
         android:paddingEnd="@dimen/screen_padding">
 
         <TextView
-            style="@style/TextAppearance.Sahihi.Label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="REPAIRS"
-            android:textColor="@color/gold" />
-
-        <TextView
             style="@style/TextAppearance.Sahihi.Headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xs"
-            android:text="Repairs" />
+            android:layout_marginTop="2dp"
+            android:text="Repairs"
+            android:textSize="27sp" />
 
         <TextView
             style="@style/TextAppearance.Sahihi.Body.Muted"
