@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
+
+        <TextView
+            style="@style/TextAppearance.Sahihi.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Day close" />
+
+        <TextView
+            android:id="@+id/dateLabel"
+            style="@style/TextAppearance.Sahihi.Body.Muted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Today" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Sahihi.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_lg">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/space_xs"
+                    android:paddingBottom="@dimen/space_xs">
+
+                    <TextView
+                        style="@style/TextAppearance.Sahihi.Body.Muted"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Cash collected" />
+
+                    <TextView
+                        android:id="@+id/cashValue"
+                        style="@style/TextAppearance.Sahihi.Money.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ksh 0" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/space_xs"
+                    android:paddingBottom="@dimen/space_xs">
+
+                    <TextView
+                        style="@style/TextAppearance.Sahihi.Body.Muted"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="M-Pesa" />
+
+                    <TextView
+                        android:id="@+id/mpesaValue"
+                        style="@style/TextAppearance.Sahihi.Money.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ksh 0" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/space_xs"
+                    android:paddingBottom="@dimen/space_xs">
+
+                    <TextView
+                        style="@style/TextAppearance.Sahihi.Body.Muted"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Bank" />
+
+                    <TextView
+                        android:id="@+id/bankValue"
+                        style="@style/TextAppearance.Sahihi.Money.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ksh 0" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/space_xs"
+                    android:paddingBottom="@dimen/space_xs">
+
+                    <TextView
+                        style="@style/TextAppearance.Sahihi.Body.Muted"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Receipts" />
+
+                    <TextView
+                        android:id="@+id/receiptsValue"
+                        style="@style/TextAppearance.Sahihi.Money.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:background="@color/line" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/handoverLayout"
+                    style="@style/Widget.Sahihi.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_lg"
+                    android:hint="Cash handed over">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/handoverInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_lg"
+                    android:text="VARIANCE" />
+
+                <TextView
+                    android:id="@+id/varianceValue"
+                    style="@style/TextAppearance.Sahihi.Display"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_xs"
+                    android:text="Ksh 0"
+                    android:textColor="@color/success" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/shareButton"
+            style="@style/Widget.Sahihi.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="Share day close" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/doneButton"
+            style="@style/Widget.Sahihi.Button.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="Done" />
+    </LinearLayout>
+</ScrollView>
