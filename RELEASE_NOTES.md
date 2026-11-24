@@ -1,12 +1,36 @@
-# Sahihi 2.0 — release notes
+# Sahihi 2.1 — release notes
 
 **Every shilling, accounted for.**
+
+Sahihi 2.1 is a design release. The ledger, the flows and the database are the
+same as 2.0; the app now looks and behaves like the rent book it always was.
+
+## What changed in 2.1
+
+- **The rent book.** Paper `#F4F1E9`, ink `#171A17` and one stamp red
+  `#8A2E2A` for money still out. Gold, forest and burnt orange are gone.
+- **Today is a statement, not a dashboard.** The gradient hero and the three
+  "Do next" cards are replaced by a ruled month statement, a ranked
+  **Needs you** list and today's receipt feed.
+- **Rows instead of cards.** Buildings, Money, People and More are hairline
+  rules and aligned figures, with 4–6dp corners and no elevation.
+- **A real ledger.** The tenant book reads as `date · entry · running balance`;
+  Money reads as `collected · expenses · net`, with arrears stamped.
+- **The stamp is the status.** `OVERDUE`, `URGENT`, `VACANT` and the
+  `SAHIHI VERIFIED` receipt stamp are the same mark.
+- **The shell is fixed.** The bottom bar carries the gesture inset, the system
+  bars are paper, and the black band and dead strip under the bar are gone.
+- **Type.** DM Sans for the interface, DM Mono for every figure, DM Serif only
+  for the wordmark and the receipt.
+- **The shared receipt image** is regenerated in the new palette and stamp.
+
+## The 2.0 feature set
 
 This release turns the version 1 property manager into Sahihi, a rent ledger
 for property agents. It is built on the same Room database and the same
 repositories, not a rewrite.
 
-## New
+### New
 
 - Buildings → units → tenants hierarchy.
 - Today screen with the month's run, who owes, vacancies and repairs.
@@ -22,7 +46,6 @@ repositories, not a rewrite.
   expense.
 - Visit planner with the current weather and a three-day rain forecast.
 - Daily brief notification from WorkManager at 7am.
-- Brand and design system: paper and ink, DM Serif/Sans/Mono, receipt motif.
 - Sample portfolio in More for demos and rehearsals.
 
 ## Database
