@@ -46,27 +46,27 @@ class UnitRowAdapter(
         val row = getItem(position)
         val context = holder.itemView.context
 
-        holder.initials.text = row.unit.name.take(2).uppercase()
-        holder.name.text = row.unit.name
-        holder.tenant.text = if (row.hasTenant) row.tenantName else row.unit.type
+        holder.initials.text = row.unit.name.take(4).uppercase()
+        holder.name.text = if (row.hasTenant) row.tenantName else "Vacant unit"
+        holder.tenant.text = "Unit ${row.unit.name} · ${Money.format(row.unit.rent)} rent"
         holder.balance.text = Money.format(row.amount)
         holder.status.text = row.statusLabel.uppercase()
 
         when {
             row.isVacant -> {
-                holder.status.setBackgroundResource(R.drawable.bg_chip_current)
-                holder.status.setTextColor(ContextCompat.getColor(context, R.color.gold_dark))
+                holder.status.setBackgroundResource(0)
+                holder.status.setTextColor(ContextCompat.getColor(context, R.color.muted))
                 holder.balance.setTextColor(ContextCompat.getColor(context, R.color.muted))
             }
             row.isOverdue -> {
-                holder.status.setBackgroundResource(R.drawable.bg_chip_overdue)
-                holder.status.setTextColor(ContextCompat.getColor(context, R.color.danger))
-                holder.balance.setTextColor(ContextCompat.getColor(context, R.color.danger))
+                holder.status.setBackgroundResource(R.drawable.bg_stamp)
+                holder.status.setTextColor(ContextCompat.getColor(context, R.color.stamp))
+                holder.balance.setTextColor(ContextCompat.getColor(context, R.color.stamp))
             }
             else -> {
-                holder.status.setBackgroundResource(R.drawable.bg_chip_paid)
-                holder.status.setTextColor(ContextCompat.getColor(context, R.color.success))
-                holder.balance.setTextColor(ContextCompat.getColor(context, R.color.success))
+                holder.status.setBackgroundResource(0)
+                holder.status.setTextColor(ContextCompat.getColor(context, R.color.paid))
+                holder.balance.setTextColor(ContextCompat.getColor(context, R.color.ink))
             }
         }
 

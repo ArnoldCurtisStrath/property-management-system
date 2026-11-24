@@ -1,170 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.Sahihi.Card"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/space_md"
-    android:clickable="true"
-    android:focusable="true">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/space_lg">
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/buildingName"
-                    style="@style/TextAppearance.Sahihi.Headline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Building" />
-
-                <TextView
-                    android:id="@+id/buildingOwner"
-                    style="@style/TextAppearance.Sahihi.Body.Muted"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:text="Owner" />
-            </LinearLayout>
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/buildingType"
+                android:id="@+id/buildingName"
+                style="@style/TextAppearance.Sahihi.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Building"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/buildingOwner"
+                style="@style/TextAppearance.Sahihi.Body.Muted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="Owner"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/buildingAddress"
+                style="@style/TextAppearance.Sahihi.Body.Muted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="Address"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/buildingMeta"
                 style="@style/TextAppearance.Sahihi.Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_sm"
-                android:background="@drawable/bg_chip_paid"
-                android:paddingStart="8dp"
-                android:paddingTop="3dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="3dp"
-                android:text="Apartment block"
-                android:textColor="@color/success" />
+                android:layout_marginTop="5dp"
+                android:text="Apartment block · 0 of 0 occupied"
+                android:textColor="@color/muted" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/buildingAddress"
-            style="@style/TextAppearance.Sahihi.Body.Muted"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
-            android:text="Address" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_md"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/occupancyProgress"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:indicatorColor="@color/primary"
-                app:trackColor="@color/forest_soft"
-                app:trackCornerRadius="3dp"
-                app:trackThickness="5dp" />
+            android:layout_marginStart="12dp"
+            android:gravity="end"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/occupancyLabel"
+                android:id="@+id/buildingArrears"
+                style="@style/TextAppearance.Sahihi.Money.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ksh 0"
+                android:textColor="@color/stamp" />
+
+            <TextView
                 style="@style/TextAppearance.Sahihi.Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_md"
-                android:text="0% · 0/0" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/space_md"
-            android:background="@color/line" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_md"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/TextAppearance.Sahihi.Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="COLLECTED" />
-
-                <TextView
-                    android:id="@+id/collectedValue"
-                    style="@style/TextAppearance.Sahihi.Money.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Ksh 0" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/TextAppearance.Sahihi.Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ARREARS" />
-
-                <TextView
-                    android:id="@+id/arrearsValue"
-                    style="@style/TextAppearance.Sahihi.Money.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Ksh 0" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/TextAppearance.Sahihi.Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NET TO OWNER" />
-
-                <TextView
-                    android:id="@+id/netValue"
-                    style="@style/TextAppearance.Sahihi.Money.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Ksh 0" />
-            </LinearLayout>
+                android:layout_marginTop="3dp"
+                android:text="ARREARS" />
         </LinearLayout>
     </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line" />
+</LinearLayout>

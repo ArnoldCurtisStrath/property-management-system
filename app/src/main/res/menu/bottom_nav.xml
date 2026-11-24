@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/dashboardFragment"
-        android:icon="@drawable/ic_dashboard"
+        android:icon="@drawable/ic_ledger"
         android:title="@string/nav_today" />
     <item
         android:id="@+id/buildingListFragment"
@@ -14,6 +14,6 @@
         android:title="@string/nav_money" />
     <item
         android:id="@+id/moreFragment"
-        android:icon="@drawable/ic_about"
+        android:icon="@drawable/ic_more"
         android:title="@string/nav_more" />
 </menu>

@@ -18,7 +18,6 @@ class TodayDebtorAdapter(
 ) : ListAdapter<TenantLedger, TodayDebtorAdapter.Holder>(DIFFERENCE) {
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
-        val initials: TextView = view.findViewById(R.id.debtorInitials)
         val name: TextView = view.findViewById(R.id.debtorName)
         val unit: TextView = view.findViewById(R.id.debtorUnit)
         val balance: TextView = view.findViewById(R.id.debtorBalance)
@@ -35,7 +34,6 @@ class TodayDebtorAdapter(
         val ledger = getItem(position)
         val context = holder.itemView.context
 
-        holder.initials.text = initials(ledger.tenant.name)
         holder.name.text = ledger.tenant.name
         holder.unit.text = listOf(ledger.buildingLabel, ledger.unitLabel)
             .filter { it.isNotBlank() && it != "No building" }
@@ -52,29 +50,20 @@ class TodayDebtorAdapter(
         holder.status.text = ledger.statusLabel.uppercase()
         when {
             ledger.isCredit || ledger.isSettled -> {
-                holder.status.setBackgroundResource(R.drawable.bg_chip_paid)
+                holder.status.setBackgroundResource(0)
                 holder.status.setTextColor(ContextCompat.getColor(context, R.color.success))
             }
             ledger.agingBucket == LedgerCalculator.AGING_CURRENT -> {
-                holder.status.setBackgroundResource(R.drawable.bg_chip_current)
-                holder.status.setTextColor(ContextCompat.getColor(context, R.color.gold_dark))
+                holder.status.setBackgroundResource(0)
+                holder.status.setTextColor(ContextCompat.getColor(context, R.color.muted))
             }
             else -> {
-                holder.status.setBackgroundResource(R.drawable.bg_chip_overdue)
+                holder.status.setBackgroundResource(R.drawable.bg_stamp)
                 holder.status.setTextColor(ContextCompat.getColor(context, R.color.danger))
             }
         }
 
         holder.itemView.setOnClickListener { onClick(ledger) }
-    }
-
-    private fun initials(name: String): String {
-        return name.trim().split(" ")
-            .filter { it.isNotBlank() }
-            .take(2)
-            .mapNotNull { it.firstOrNull()?.uppercaseChar() }
-            .joinToString("")
-            .ifBlank { "?" }
     }
 
     companion object {

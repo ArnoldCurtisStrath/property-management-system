@@ -25,29 +25,23 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@id/bottomDivider"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:navGraph="@navigation/nav_graph" />
 
-    <View
-        android:id="@+id/bottomDivider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/line"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/paper"
+        android:background="@drawable/bg_bottom_bar"
+        android:minHeight="@dimen/bottom_nav_height"
+        android:paddingTop="6dp"
         app:itemActiveIndicatorStyle="@null"
+        app:itemIconSize="22dp"
         app:itemIconTint="@color/bottom_nav_item"
-        app:itemRippleColor="@color/forest_soft"
+        app:itemRippleColor="@color/paper_deep"
         app:itemTextColor="@color/bottom_nav_item"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"

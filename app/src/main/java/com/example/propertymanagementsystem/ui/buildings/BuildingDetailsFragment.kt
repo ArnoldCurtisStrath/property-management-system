@@ -160,7 +160,7 @@ class BuildingDetailsFragment : Fragment() {
         binding.netAmount.setTextColor(
             ContextCompat.getColor(
                 requireContext(),
-                if (summary.netToOwner < 0) R.color.vermilion_soft else R.color.paper_surface
+                if (summary.netToOwner < 0) R.color.stamp else R.color.ink
             )
         )
         binding.netDetail.text = "Collected ${Money.format(summary.collected)} · " +
