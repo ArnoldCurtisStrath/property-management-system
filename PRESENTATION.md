@@ -63,7 +63,7 @@ Open the app on **Today**.
 > This is the month written as a statement: Ksh 73,000 collected of
 > Ksh 113,000 expected, and Ksh 52,000 still out across five tenants. The
 > **Needs you** list puts the tenants, the open repairs and the vacancy in
-> one place. The receipts below are today's proof.
+> one place. The receipts below are the latest proof.
 
 Point at the statement, then the **Needs you** rows. Tap **Collect rent**.
 
