@@ -8,49 +8,63 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.propertymanagementsystem.data.model.Payment
 
-/**
- * The queries used on the payments table.
- *
- * The sums are done by the database itself instead of in Kotlin. That is
- * quicker and it keeps the totals correct even when there are many payments.
- */
 @Dao
 interface PaymentDao {
 
     @Query("SELECT * FROM payments ORDER BY date DESC, id DESC")
     fun getAll(): LiveData<List<Payment>>
 
+    @Query("SELECT * FROM payments ORDER BY date DESC, id DESC")
+    suspend fun getAllOnce(): List<Payment>
+
+    @Query("SELECT * FROM payments WHERE id = :id")
+    suspend fun getOnce(id: Long): Payment?
+
     @Query("SELECT * FROM payments WHERE tenantId = :tenantId ORDER BY date DESC, id DESC")
     fun getForTenant(tenantId: Long): LiveData<List<Payment>>
+
+    @Query("SELECT * FROM payments WHERE tenantId = :tenantId ORDER BY date DESC, id DESC")
+    suspend fun getForTenantOnce(tenantId: Long): List<Payment>
 
     @Query("SELECT * FROM payments WHERE month = :month ORDER BY date DESC")
     fun getForMonth(month: String): LiveData<List<Payment>>
 
-    // The total rent collected in one month. COALESCE is used so the sum is
-    // 0 and not null when there are no payments at all.
+    @Query("SELECT * FROM payments WHERE month = :month ORDER BY date DESC")
+    suspend fun getForMonthOnce(month: String): List<Payment>
+
+    @Query("SELECT * FROM payments WHERE buildingId = :buildingId ORDER BY date DESC")
+    fun getForBuilding(buildingId: Long): LiveData<List<Payment>>
+
+    @Query("SELECT * FROM payments WHERE date = :date ORDER BY id DESC")
+    fun getForDate(date: String): LiveData<List<Payment>>
+
+    @Query("SELECT * FROM payments WHERE date = :date ORDER BY id DESC")
+    suspend fun getForDateOnce(date: String): List<Payment>
+
     @Query(
         "SELECT COALESCE(SUM(amount), 0) FROM payments " +
             "WHERE month = :month AND status = 'Paid'"
     )
     fun totalCollectedInMonth(month: String): LiveData<Double>
 
-    // What one tenant has paid for one month.
+    @Query(
+        "SELECT COALESCE(SUM(amount), 0) FROM payments " +
+            "WHERE month = :month AND buildingId = :buildingId AND status = 'Paid'"
+    )
+    fun totalCollectedInMonthForBuilding(buildingId: Long, month: String): LiveData<Double>
+
     @Query(
         "SELECT COALESCE(SUM(amount), 0) FROM payments " +
             "WHERE tenantId = :tenantId AND month = :month AND status = 'Paid'"
     )
     fun totalPaidByTenant(tenantId: Long, month: String): LiveData<Double>
 
-    // How many payments a tenant has for one month. Used to work out if the
-    // rent for that month has been paid.
     @Query(
         "SELECT COUNT(*) FROM payments " +
             "WHERE tenantId = :tenantId AND month = :month AND status = 'Paid'"
     )
     fun countPaidByTenant(tenantId: Long, month: String): LiveData<Int>
 
-    // The same count but for the background worker, which reads the number
-    // once and does not watch it.
     @Query(
         "SELECT COUNT(*) FROM payments " +
             "WHERE tenantId = :tenantId AND month = :month AND status = 'Paid'"

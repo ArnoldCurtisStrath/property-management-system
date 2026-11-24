@@ -13,10 +13,19 @@ class TenantRepository(private val dao: TenantDao) {
 
     fun getActive(): LiveData<List<Tenant>> = dao.getActive()
 
+    suspend fun getAllOnce(): List<Tenant> = dao.getAllOnce()
+
+    suspend fun getActiveOnce(): List<Tenant> = dao.getActiveOnce()
+
     fun getById(id: Long): LiveData<Tenant?> = dao.getById(id)
+
+    suspend fun getOnce(id: Long): Tenant? = dao.getOnce(id)
 
     fun getForProperty(propertyId: Long): LiveData<List<Tenant>> =
         dao.getForProperty(propertyId)
+
+    fun getForBuilding(buildingId: Long): LiveData<List<Tenant>> =
+        dao.getForBuilding(buildingId)
 
     fun countForProperty(propertyId: Long): LiveData<Int> = dao.countForProperty(propertyId)
 
