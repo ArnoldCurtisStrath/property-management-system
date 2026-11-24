@@ -49,7 +49,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="SAHIHI · RENT RECEIPT"
-                        android:textColor="@color/gold" />
+                        android:textColor="@color/ink" />
 
                     <TextView
                         android:id="@+id/receiptNumber"
@@ -222,12 +222,12 @@
 
                 <TextView
                     android:id="@+id/amountValue"
-                    style="@style/TextAppearance.Sahihi.Display"
+                    style="@style/TextAppearance.Sahihi.Money.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_xs"
                     android:text="Ksh 0"
-                    android:textColor="@color/primary" />
+                    android:textColor="@color/ink" />
 
                 <TextView
                     android:id="@+id/balanceValue"
@@ -244,11 +244,13 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/space_lg"
                     android:background="@drawable/bg_stamp"
+                    android:fontFamily="@font/dm_mono"
                     android:gravity="center"
+                    android:letterSpacing="0.1"
                     android:rotation="-8"
                     android:text="SAHIHI\nVERIFIED"
-                    android:textColor="@color/gold"
-                    android:textSize="15sp"
+                    android:textColor="@color/stamp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <TextView

@@ -10,7 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/screen_padding">
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingTop="8dp"
+        android:paddingEnd="@dimen/screen_padding"
+        android:paddingBottom="@dimen/space_3xl">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,27 +21,12 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <TextView
+                style="@style/TextAppearance.Sahihi.Label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/TextAppearance.Sahihi.Label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TENANT LEDGER"
-                    android:textColor="@color/gold" />
-
-                <TextView
-                    android:id="@+id/tenantName"
-                    style="@style/TextAppearance.Sahihi.Headline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_xs"
-                    android:text="Tenant" />
-            </LinearLayout>
+                android:text="TENANT LEDGER" />
 
             <TextView
                 android:id="@+id/editButton"
@@ -47,141 +35,161 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="@dimen/space_sm"
+                android:paddingStart="10dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:text="EDIT"
-                android:textColor="@color/secondary" />
+                android:textColor="@color/ink" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tenantName"
+            style="@style/TextAppearance.Sahihi.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Tenant"
+            android:textSize="27sp" />
 
         <TextView
             android:id="@+id/unitLine"
             style="@style/TextAppearance.Sahihi.Body.Muted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
-            android:text="Building · Unit" />
+            android:layout_marginTop="3dp"
+            android:text="Building · Unit"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/contactLine"
             style="@style/TextAppearance.Sahihi.Body.Muted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="Phone · Email" />
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_lg"
-            android:background="@drawable/bg_hero"
-            android:padding="@dimen/space_xl">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/TextAppearance.Sahihi.Label"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="BALANCE"
-                        android:textColor="@color/gold" />
-
-                    <TextView
-                        android:id="@+id/statusChip"
-                        style="@style/TextAppearance.Sahihi.Label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_chip_paid"
-                        android:paddingStart="8dp"
-                        android:paddingTop="2dp"
-                        android:paddingEnd="8dp"
-                        android:paddingBottom="2dp"
-                        android:text="PAID"
-                        android:textColor="@color/primary" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/balanceValue"
-                    style="@style/TextAppearance.Sahihi.Money.Large"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_sm"
-                    android:text="Ksh 0"
-                    android:textColor="@color/paper_surface" />
-
-                <TextView
-                    android:id="@+id/agingLine"
-                    style="@style/TextAppearance.Sahihi.Body"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Current"
-                    android:textColor="#C9D6D0" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_lg"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/collectButton"
-                        style="@style/Widget.Sahihi.Button"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Collect rent"
-                        android:textColor="@color/primary"
-                        app:backgroundTint="@color/paper_surface"
-                        app:icon="@drawable/ic_receipt"
-                        app:iconTint="@color/primary" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/statementButton"
-                        style="@style/Widget.Material3.Button.OutlinedButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_sm"
-                        android:layout_weight="1"
-                        android:text="Statement"
-                        android:textColor="@color/paper_surface"
-                        app:cornerRadius="14dp"
-                        app:icon="@drawable/ic_share"
-                        app:iconTint="@color/paper_surface"
-                        app:strokeColor="@color/paper_surface" />
-                </LinearLayout>
-            </LinearLayout>
-        </FrameLayout>
+            android:layout_marginTop="1dp"
+            android:text="Phone · Email"
+            android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_md"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/rule_strong" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="12dp">
+
+                <TextView
+                    style="@style/TextAppearance.Sahihi.Label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="BALANCE" />
+
+                <TextView
+                    android:id="@+id/statusChip"
+                    style="@style/TextAppearance.Sahihi.Stamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="6dp"
+                    android:paddingTop="1dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="1dp"
+                    android:rotation="-1.5"
+                    android:text="PAID"
+                    android:textColor="@color/paid" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/balanceValue"
+                style="@style/TextAppearance.Sahihi.Money.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Ksh 0" />
+
+            <TextView
+                android:id="@+id/agingLine"
+                style="@style/TextAppearance.Sahihi.Body.Muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Current"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/collectButton"
+                    style="@style/Widget.Sahihi.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="Collect rent"
+                    app:icon="@drawable/ic_add" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/statementButton"
+                    style="@style/Widget.Sahihi.Button.Outlined"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="@dimen/space_sm"
+                    android:layout_weight="1"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="Statement"
+                    app:icon="@drawable/ic_share"
+                    app:iconTint="@color/ink" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/rule_strong" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/remindButton"
                 style="@style/Widget.Sahihi.Button.Outlined"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
                 android:layout_weight="1"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:text="Send reminder" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/deleteTenantButton"
-                style="@style/Widget.Material3.Button.TextButton"
+                style="@style/Widget.Sahihi.Button.Quiet"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="44dp"
                 android:layout_weight="1"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:text="Delete tenant"
-                android:textColor="@color/danger" />
+                android:textColor="@color/stamp"
+                app:iconTint="@color/stamp" />
         </LinearLayout>
 
         <TextView
@@ -189,21 +197,42 @@
             style="@style/TextAppearance.Sahihi.Body.Muted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
-            android:text="Rent Ksh 0 · Deposit Ksh 0 · Due day 1" />
+            android:layout_marginTop="12dp"
+            android:text="Rent Ksh 0 · Deposit Ksh 0 · Due day 1"
+            android:textSize="13sp" />
 
-        <TextView
-            style="@style/TextAppearance.Sahihi.Headline"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2xl"
-            android:text="Ledger" />
+            android:layout_marginTop="30dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextAppearance.Sahihi.Headline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="The book"
+                android:textSize="21sp" />
+
+            <TextView
+                style="@style/TextAppearance.Sahihi.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DATE · ENTRY · BALANCE" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/rule_strong" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ledgerList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xs"
             android:nestedScrollingEnabled="false" />
 
         <TextView

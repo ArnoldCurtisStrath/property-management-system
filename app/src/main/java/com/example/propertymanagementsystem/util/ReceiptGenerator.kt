@@ -53,7 +53,7 @@ object ReceiptGenerator {
     fun render(context: Context, data: ReceiptData): Bitmap {
         val bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
-        canvas.drawColor(Color.parseColor("#F7F1E3"))
+        canvas.drawColor(Color.parseColor("#F4F1E9"))
 
         val serif = ResourcesCompat.getFont(context, R.font.dm_serif_display)
             ?: Typeface.SERIF
@@ -61,14 +61,14 @@ object ReceiptGenerator {
         val mono = ResourcesCompat.getFont(context, R.font.dm_mono_regular) ?: Typeface.MONOSPACE
 
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-        val forest = Color.parseColor("#0F3D2E")
-        val gold = Color.parseColor("#C9A227")
-        val cream = Color.parseColor("#FFFDF7")
-        val ink = Color.parseColor("#1C1B18")
-        val muted = Color.parseColor("#7C7568")
-        val line = Color.parseColor("#D8CBB7")
+        val forest = Color.parseColor("#171A17")
+        val stamp = Color.parseColor("#8A2E2A")
+        val cream = Color.parseColor("#FAF8F2")
+        val ink = Color.parseColor("#171A17")
+        val muted = Color.parseColor("#6E6A5F")
+        val line = Color.parseColor("#D9D3C5")
 
-        // The forest band at the top.
+        // The ink band at the top.
         paint.color = forest
         canvas.drawRect(0f, 0f, WIDTH.toFloat(), 190f, paint)
 
@@ -79,7 +79,7 @@ object ReceiptGenerator {
 
         paint.typeface = mono
         paint.textSize = 22f
-        paint.color = gold
+        paint.color = Color.parseColor("#BDB6A6")
         canvas.drawText("RENT RECEIPT", 72f, 154f, paint)
 
         paint.textAlign = Paint.Align.RIGHT
@@ -136,9 +136,9 @@ object ReceiptGenerator {
         paint.textSize = 24f
         canvas.drawText("AMOUNT PAID", 72f, 990f, paint)
 
-        paint.typeface = serif
-        paint.color = forest
-        paint.textSize = 76f
+        paint.typeface = mono
+        paint.color = ink
+        paint.textSize = 68f
         canvas.drawText(Money.format(data.payment.amount), 72f, 1075f, paint)
 
         paint.typeface = mono
@@ -155,22 +155,21 @@ object ReceiptGenerator {
 
         // The stamp.
         canvas.save()
-        canvas.rotate(-12f, 820f, 1215f)
+        canvas.rotate(-8f, 810f, 1215f)
         paint.style = Paint.Style.STROKE
-        paint.strokeWidth = 8f
-        paint.color = gold
-        canvas.drawCircle(820f, 1215f, 112f, paint)
+        paint.strokeWidth = 6f
+        paint.color = stamp
+        canvas.drawRect(668f, 1148f, 952f, 1282f, paint)
         paint.strokeWidth = 2f
-        canvas.drawCircle(820f, 1215f, 96f, paint)
+        canvas.drawRect(680f, 1160f, 940f, 1270f, paint)
         paint.style = Paint.Style.FILL
-        paint.typeface = serif
-        paint.textAlign = Paint.Align.CENTER
-        paint.color = gold
-        paint.textSize = 40f
-        canvas.drawText("SAHIHI", 820f, 1205f, paint)
         paint.typeface = mono
+        paint.textAlign = Paint.Align.CENTER
+        paint.color = stamp
+        paint.textSize = 34f
+        canvas.drawText("SAHIHI", 810f, 1212f, paint)
         paint.textSize = 18f
-        canvas.drawText("VERIFIED", 820f, 1240f, paint)
+        canvas.drawText("VERIFIED", 810f, 1244f, paint)
         canvas.restore()
         paint.textAlign = Paint.Align.LEFT
 

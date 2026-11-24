@@ -11,6 +11,9 @@ import com.example.propertymanagementsystem.R
 import com.example.propertymanagementsystem.data.model.Payment
 import com.example.propertymanagementsystem.util.Dates
 import com.example.propertymanagementsystem.util.Money
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 data class ReceiptMiniRow(
     val payment: Payment,
@@ -37,11 +40,17 @@ class ReceiptMiniAdapter(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val row = getItem(position)
+        val payment = row.payment
         holder.tenant.text = row.tenantName
-        holder.meta.text = row.payment.method + " · " + Dates.shortDate(row.payment.date)
-        holder.amount.text = Money.format(row.payment.amount)
-        holder.number.text = row.payment.receiptNumber.ifBlank { "Receipt" }
-        holder.itemView.setOnClickListener { onClick(row.payment) }
+        val whenLabel = if (payment.date == Dates.today()) {
+            SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date(payment.createdAt))
+        } else {
+            Dates.shortDate(payment.date)
+        }
+        holder.meta.text = payment.method + " · " + whenLabel
+        holder.amount.text = Money.format(payment.amount)
+        holder.number.text = payment.receiptNumber.ifBlank { "Receipt" }
+        holder.itemView.setOnClickListener { onClick(payment) }
     }
 
     companion object {
